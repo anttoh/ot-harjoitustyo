@@ -1,0 +1,113 @@
+commit 22ccade1af5b416375697b763ff83528e0a76282
+Author: Antto Heikura <antto.heikura@gmail.com>
+Date:   Thu Oct 31 13:23:17 2019 +0200
+
+    poista file1 ja uudelleennimeä file2 => file22
+
+ hakemistoja/file2             | 0
+ hakemistoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 63e290913739f20b4fbc63de0e0d5b7300a84cc0
+Author: Antto Heikura <antto.heikura@gmail.com>
+Date:   Thu Oct 31 13:18:09 2019 +0200
+
+    lisää hakemisto tiedostoja ja sen sisälle tiedosto file1, file2 ja file3
+
+ hakemistoja/file1 | 0
+ hakemistoja/file2 | 0
+ hakemistoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 4c9c27f53c3af9fd7191e197b57a917815f3282d
+Author: Antto Heikura <antto.heikura@gmail.com>
+Date:   Thu Oct 31 13:10:43 2019 +0200
+
+    lisäyksiä ja poistoja
+
+ eka.txt    | 6 ++----
+ kolmas.txt | 2 +-
+ 2 files changed, 3 insertions(+), 5 deletions(-)
+
+commit acb54fec6186c44bc9251d58f9259712e3b85ed2
+Author: Antto Heikura <antto.heikura@gmail.com>
+Date:   Thu Oct 31 13:08:30 2019 +0200
+
+    uudelleennimeä tiedosto.txt
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit ab6b343a4bc40ea411cd1a38870b343bebec21ad
+Author: Antto Heikura <antto.heikura@gmail.com>
+Date:   Thu Oct 31 13:06:21 2019 +0200
+
+    poista toinen.txt
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit f4d35c12daa8b50a1f1b154d725521cc44074e7e
+Author: Antto Heikura <antto.heikura@gmail.com>
+Date:   Thu Oct 31 13:01:03 2019 +0200
+
+    poista tekstiä tiedosto.txt:stä
+
+ tiedosto.txt | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+commit b6b1bddaed5e92ea4cde9ba551ed964d1aa22a68
+Author: Antto Heikura <antto.heikura@gmail.com>
+Date:   Thu Oct 31 12:59:53 2019 +0200
+
+    lisää tekstiä tiedostoon tiedosto.txt
+
+ tiedosto.txt | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
+
+commit dddf7062b920d663a02579e420dcbd1b05cdefd5
+Author: Antto Heikura <antto.heikura@gmail.com>
+Date:   Wed Oct 30 17:42:50 2019 +0200
+
+    luo hakemisto stuff ja sen sisälle tiedosto jokin.txt
+
+ stuff/jokin.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 66ba281482380a6c1bbc27ee7f5d95d67dd5dc65
+Author: Antto Heikura <antto.heikura@gmail.com>
+Date:   Wed Oct 30 17:39:11 2019 +0200
+
+    muuta tiedostoja toinen ja kolmas
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit f88ee37361c01efd8b067fe70be283c12fad8686
+Author: Antto Heikura <antto.heikura@gmail.com>
+Date:   Wed Oct 30 17:35:29 2019 +0200
+
+    kolmas.txt luotu
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit f2b26b27a992f6b6ea121f8b2ce56a312609c50d
+Author: Antto Heikura <antto.heikura@gmail.com>
+Date:   Wed Oct 30 17:32:31 2019 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 63f854aaa64fc72a2ba77b7edb59c748e543c316
+Author: Antto Heikura <antto.heikura@gmail.com>
+Date:   Wed Oct 30 17:30:12 2019 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
