@@ -6,4 +6,3 @@
 
 [komentorivi.txt](./laskarit/viikko1/komentorivi.txt)
 
-jokin muutos
