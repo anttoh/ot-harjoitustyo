@@ -1,3 +1,6 @@
 # Ohjelmistotekniikan harjoitustyö, syksy 2019
-Tämä on tavallista tekstiä, joka sisältää **lihavoitua tekstiä** ja *kursivoitua tekstiä*.
-Bonuksena vielä ***lihavoitua sekä kursivoitua tekstiä***.
+## Tehtävät
+### Viikko 1
+
+[gitlog.txt](./laskarit/viikko1/gitlog.txt)
+[komentorivi.txt](./laskarit/viikko1/komentorivi.txt)
