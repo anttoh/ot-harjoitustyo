@@ -6,14 +6,29 @@ import java.util.List;
 
 public class MazeGenerator {
 
-    private int width; // max 100
-    private int height; // max 100
+    private int width; // 2 <= width <= 90
+    private int height; // 2 <= height <= 90
     private Cell[][] cells;
     private boolean[][] visited;
 
     public MazeGenerator(int width, int height) {
-        this.width = width < 100 ? width : 100;
-        this.height = height < 100 ? height : 100;
+        this.width = width;
+        this.height = height;
+
+        if (this.width < 2) {
+            this.width = 2;
+        }
+        if (this.width > 90) {
+            this.width = 90;
+        }
+
+        if (this.height < 2) {
+            this.height = 2;
+        }
+        if (this.height > 90) {
+            this.height = 90;
+        }
+
         this.cells = new Cell[this.width][this.height];
         this.visited = new boolean[this.width][this.height];
     }

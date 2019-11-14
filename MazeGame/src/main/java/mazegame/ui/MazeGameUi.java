@@ -17,15 +17,15 @@ public class MazeGameUi extends Application {
 
     @Override
     public void start(Stage stage) {
-        int w = 10;
-        int h = 10;
+        int w = 50;
+        int h = 50;
         Maze maze = new Maze(w, h);
 
-        Canvas canvas = new Canvas(100, 100);
+        Canvas canvas = new Canvas(1000, 1000);
         GraphicsContext marker = canvas.getGraphicsContext2D();
         marker.setFill(Color.WHITE);
 
-        int r = 100 / Math.max(w, h);
+        int r = 1000 / Math.max(w, h);
 
         new AnimationTimer() {
 
