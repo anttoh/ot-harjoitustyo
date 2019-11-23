@@ -10,7 +10,7 @@ import mazegame.ui.MazeGameUi;
 public class Main {
 
     public static void main(String[] args) {
-        // initDB();
+        //initDB();
         MazeGameUi.main(args);
     }
 
