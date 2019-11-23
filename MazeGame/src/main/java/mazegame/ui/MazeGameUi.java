@@ -9,7 +9,7 @@ public class MazeGameUi extends Application {
 
     @Override
     public void start(Stage stage) {
-        Scene gameScene = new GameScene(10, 10).get();
+        Scene gameScene = new GameScene(10, 10).createAndGet();
 
         stage.setScene(gameScene);
         stage.show();

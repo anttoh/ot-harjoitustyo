@@ -26,13 +26,10 @@ public class GameScene {
         this.canvasSize = 950;
     }
 
-    public Scene get() {
-        int w = this.width;
-        int h = this.height;
-        Maze maze = new Maze(w, h);
+    public Scene createAndGet() {
+        Maze maze = new Maze(this.width, this.height);
 
-        int S = this.canvasSize;
-        Canvas canvas = new Canvas(S, S);
+        Canvas canvas = new Canvas(this.canvasSize, this.canvasSize);
 
         GraphicsContext marker = canvas.getGraphicsContext2D();
         marker.setFill(Color.WHITE);
@@ -51,18 +48,18 @@ public class GameScene {
 
         Scene scene = new Scene(layout);
 
-        int r = S / Math.max(w, h);
+        int r = this.canvasSize / Math.max(this.width, this.height);
 
         new AnimationTimer() {
             long edellinen = 0;
 
             @Override
             public void handle(long nykyhetki) {
-                if (nykyhetki - edellinen < 100000000) {
+                if (nykyhetki - edellinen < 1000000) {
                     return;
                 }
-                for (int x = 0; x < w; x++) {
-                    for (int y = 0; y < h; y++) {
+                for (int x = 0; x < width; x++) {
+                    for (int y = 0; y < height; y++) {
                         marker.fillRect((x * r), (y * r), r / 1.2, r / 1.2);
                         Cell cur = maze.layout(x, y);
                         if (cur.getRight() != cur) {
