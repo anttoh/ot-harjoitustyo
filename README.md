@@ -8,6 +8,8 @@ Sovellus on yksinkertainen sokkelo peli. Jokaisen pelin alussa sovellus luo satu
 
 [Vaatimusmäärittely](./dokumentointi/vaatimusmaarittely.md)
 
+[Arkkitehtuurikuvaus](./dokumentointi/arkkitehtuurikuvaus.md)
+
 ## Komentorivitoiminnot
 
 ### Testaus
