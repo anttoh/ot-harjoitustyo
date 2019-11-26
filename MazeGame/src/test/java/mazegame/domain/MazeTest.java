@@ -59,9 +59,7 @@ public class MazeTest {
         /*
         There are only two possible paths from top left corner to bottom right
         corner in 2 by 2 grid: either you go right then down or down then right
-        If reachedGoal returns true after travesring either of those paths, we can
-        determine that the method is working as it should;
-        maze 
+        If reachedGoal returns true after one of those paths, it's working
          */
         boolean visitedGoal = false;
         maze = new Maze(2, 2);
