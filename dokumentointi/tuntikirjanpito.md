@@ -6,4 +6,6 @@ päivä | aika | mitä tein
 14.11 | 2 | testaamista
 21.11 | 1 | maaliruudun lisääminen ja refaktorointia
 23.11 | 5 | sunnittelua, tietokannan ja DAOjen toteutusta ja checkstylen käyttöönotto
-yht. | 14 |
+25.11 | 1 | näkymien suunnittelu
+26.11 | 7 | näkymien ja niiden välillä siirtymisen luontia, testien luontia, refaktorointia ja luokkakaavion tekeminen 
+yht. | 22 |
