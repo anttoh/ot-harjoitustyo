@@ -16,21 +16,21 @@ Sovellus on yksinkertainen sokkelo peli. Jokaisen pelin alussa sovellus luo satu
 
 ### Kirjautumisen jälkeen
 
-- käyttäjä siirtyy avausnäkymään (lobby)
+- (tehty) käyttäjä siirtyy avausnäkymään (lobby)
+- (tehty) käyttäjä voi aloittaa pelin, jolloin tämä siirtyy pelin näkymään
 - käyttäjä voi kirjautua ulos
-- käyttäjä voi aloittaa pelin, jolloin tämä siirtyy pelin näkymään
 
 ### Käyttäjän pelatessa
 
-- pelin alkaessa, sovellus luo satunnaisen sokkelon ja ajastin käynnistyy, kun sokkelo on valmis
-- käyttäjä voi ohjata hahmonsa sokkelon läpi
-- käyttäjän saavuttua sokkelon loppuun ajastin pysähtyy ja vaihtuu näkymä takaisin edelliseen (lobby) 
+- (tehty) pelin alkaessa, sovellus luo satunnaisen sokkelon ja ajastin käynnistyy, kun sokkelo on valmis
+- (tehty) käyttäjä voi ohjata hahmonsa sokkelon läpi
+- (tehty) käyttäjän saavuttua sokkelon loppuun ajastin pysähtyy ja vaihtuu näkymä takaisin edelliseen (lobby) 
 
 ## Jatkokehitysideoita
 
+- (tehty) käyttäjä voi itse määrittää sokkelon koon antamalla toivotun leveyden ja korkeuden
 - valmiiksi määriteltyjä kategorioita, eri kokoisia ja pituisia sokkeloja (easy, medium, hard)
 - pelimoodi, jossa aika laskee alaspäin ja käyttäjän tulee selvittää sokkelo ennen ajajn loppumista
-- käyttäjä voi itse määrittää sokkelon koon antamalla toivotun leveyden ja korkeuden
 - käyttäjä voi itse valita pelin pituuden (kuinka monta sokkeloa ratkoa peräkkäin ilman että ajastin pysähtyy)
 - käyttäjä voi itse valita pelilmoodin.
 - erillaisten tilastojen luonti esim. lista päivän tai kuukauden nopeimmista sokkeloiden ratkojista kategoria kohtaisesti
