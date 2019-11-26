@@ -12,35 +12,77 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author antto
- */
 public class MazeTest {
-    
+
+    Maze maze;
+
     public MazeTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
+        maze = new Maze(10, 10);
     }
-    
+
     @After
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
-    
+    @Test
+    public void currentCellIsRightAtStart() {
+        assertEquals(maze.layout(0, 0), maze.getCurrentCell());
+
+    }
+
+    @Test
+    public void goalIsCorrectCell() {
+        assertEquals(maze.layout(9, 9), maze.getGoal());
+
+    }
+
+    @Test
+    public void reachedGoalReturnsFalseWhenCurCellIsNotEqualsToGoal() {
+        assertEquals(false, maze.reachedGoal());
+
+    }
+
+    @Test
+    public void reachedGoalReturnsTrueWhenCurCellEqualsGoal() {
+        /*
+        There are only two possible paths from top left corner to bottom right
+        corner in 2 by 2 grid: either you go right then down or down then right
+        If reachedGoal returns true after travesring either of those paths, we can
+        determine that the method is working as it should;
+        maze 
+         */
+        boolean visitedGoal = false;
+        maze = new Maze(2, 2);
+
+        maze.moveRight();
+        maze.moveDown();
+        if (maze.reachedGoal()) {
+            visitedGoal = true;
+        }
+
+        // reset
+        maze.moveUp();
+        maze.moveLeft();
+
+        maze.moveDown();
+        maze.moveRight();
+        if (maze.reachedGoal()) {
+            visitedGoal = true;
+        }
+
+        assertEquals(true, visitedGoal);
+
+    }
 }

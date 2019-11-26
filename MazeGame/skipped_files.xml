@@ -6,5 +6,7 @@
 
 <suppressions>
     <suppress files="mazegame.ui.MazeGameUi.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="mazegame.ui.LoginScene.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="mazegame.ui.LobbyScene.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="mazegame.ui.GameScene.java" checks="[a-zA-Z0-9]*"/>
 </suppressions>
