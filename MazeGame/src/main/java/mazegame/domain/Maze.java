@@ -6,11 +6,10 @@ public class Maze {
     private Cell curCell;
     private Cell goal;
 
-    public Maze(int width, int height) {
-        MazeGenerator generator = new MazeGenerator(width, height);
-        this.layout = generator.generateAndReturnMazeLayout();
+    public Maze(Cell[][] layout) {
+        this.layout = layout;
         this.curCell = this.layout[0][0];
-        this.goal = this.layout[width - 1][height - 1];
+        this.goal = this.layout[this.layout.length - 1][this.layout[0].length - 1];
 
     }
 
@@ -26,7 +25,7 @@ public class Maze {
         return this.goal == this.curCell;
     }
 
-    public Cell layout(int x, int y) {
+    public Cell getCellAt(int x, int y) {
         return this.layout[x][y];
     }
 

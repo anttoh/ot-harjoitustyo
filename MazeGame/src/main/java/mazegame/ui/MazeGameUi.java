@@ -1,9 +1,9 @@
 package mazegame.ui;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
 
 import javafx.stage.Stage;
+import mazegame.domain.MazeGameService;
 
 public class MazeGameUi extends Application {
 
@@ -11,9 +11,11 @@ public class MazeGameUi extends Application {
     private LoginScene loginScene;
     private LobbyScene lobbyScene;
     private GameScene gameScene;
+    private MazeGameService mazeGameService;
 
     @Override
     public void start(Stage s) {
+        this.mazeGameService = new MazeGameService();
         this.stage = s;
         this.stage.setMaximized(true);
         this.loginScene = new LoginScene(this);
@@ -24,7 +26,11 @@ public class MazeGameUi extends Application {
         this.stage.setScene(this.loginScene.createAndGet());
         this.stage.show();
     }
-
+    
+    public MazeGameService getService() {
+        return this.mazeGameService;
+    }
+    
     public void login() {
         this.stage.setTitle("Lobby");
         this.stage.setScene(this.lobbyScene.createAndGet());
@@ -37,12 +43,14 @@ public class MazeGameUi extends Application {
 
     public void play(int width, int height) {
         this.stage.setTitle("Game");
-        this.stage.setScene(this.gameScene.createAndGet(width, height));
+        this.mazeGameService.startGame(width, height);
+        this.stage.setScene(this.gameScene.createAndGet());
         this.stage.setFullScreen(true);
     }
 
     public void exitGame() {
         this.stage.setTitle("Lobby");
+        this.mazeGameService.endGame();
         this.stage.setScene(this.lobbyScene.createAndGet());
         this.stage.setMaximized(true);
     }

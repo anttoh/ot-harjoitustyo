@@ -14,25 +14,26 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
-import mazegame.domain.Cell;
-import mazegame.domain.Maze;
+
+import mazegame.domain.MazeGameService;
 
 public class GameScene {
 
     private MazeGameUi ui;
+    private MazeGameService service;
 
     public GameScene(MazeGameUi ui) {
         this.ui = ui;
+        this.service = ui.getService();
     }
 
-    public Scene createAndGet(int width, int height) {
-        Maze maze = new Maze(width, height);
+    public Scene createAndGet() {
 
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 
         int size = (int) (0.90 * screenBounds.getHeight());
 
-        Canvas canvas = new Canvas(size, size); 
+        Canvas canvas = new Canvas(size, size);
 
         GraphicsContext marker = canvas.getGraphicsContext2D();
         marker.setFill(Color.WHITE);
@@ -46,7 +47,7 @@ public class GameScene {
 
         Button leave = new Button("exit game");
         leave.setOnAction(e -> {
-            ui.exitGame();
+            this.service.endGame();
         });
 
         BorderPane layout = new BorderPane();
@@ -57,7 +58,11 @@ public class GameScene {
 
         Scene scene = new Scene(layout, screenBounds.getWidth(), screenBounds.getHeight());
 
-        int r = size / Math.max(width, height);
+        int[][] l = this.service.getLayoutAsIntsForDrawing();
+        int width = l.length;
+        int height = l[0].length;
+        int relativeSize = size / Math.max(width, height);
+        double wallSize = 1.2;
 
         new AnimationTimer() {
             long prevMoment1 = 0;
@@ -65,7 +70,7 @@ public class GameScene {
 
             @Override
             public void handle(long curMoment) {
-                if (maze.reachedGoal()) {
+                if (service.gameEnded()) {
                     stop();
                     ui.exitGame();
                 }
@@ -78,26 +83,39 @@ public class GameScene {
                 if (curMoment - prevMoment2 > 1000000) {
                     for (int x = 0; x < width; x++) {
                         for (int y = 0; y < height; y++) {
-                            marker.fillRect((x * r), (y * r), r / 1.2, r / 1.2);
-                            Cell cur = maze.layout(x, y);
-                            if (cur.getRight() != cur) {
-                                marker.fillRect((x * r), (y * r), r, r / 1.2);
+                            int type = l[x][y];
+                            switch (type) {
+                                case 0:
+                                    marker.fillRect((x * relativeSize), (y * relativeSize), relativeSize / wallSize, relativeSize / wallSize);
+                                    break;
+                                case 1:
+                                    marker.fillRect((x * relativeSize), (y * relativeSize), relativeSize, relativeSize / wallSize);
+                                    break;
+                                case 2:
+                                    marker.fillRect((x * relativeSize), (y * relativeSize), relativeSize / wallSize, relativeSize);
+                                    break;
+                                default:
+                                    marker.fillRect((x * relativeSize), (y * relativeSize), relativeSize / wallSize, relativeSize);
+                                    marker.fillRect((x * relativeSize), (y * relativeSize), relativeSize, relativeSize / wallSize);
+                                    break;
                             }
-                            if (cur.getDown() != cur) {
-                                marker.fillRect((x * r), (y * r), r / 1.2, r);
-                            }
-                            if (maze.getGoal() == cur) {
+                            
+                            if (service.mazeGoal() == service.getCellAtPos(x, y)) {
                                 marker.setFill(Color.GREEN);
-                                marker.fillRect((x * r), (y * r), r / 1.2, r / 1.2);
+                                marker.fillRect((x * relativeSize), (y * relativeSize), relativeSize / wallSize, relativeSize / wallSize);
                                 marker.setFill(Color.WHITE);
                             }
 
-                            if (maze.getCurrentCell() == cur) {
+                            if (service.mazeCurrentCell() == service.getCellAtPos(x, y)) {
                                 marker.setFill(Color.RED);
-                                marker.fillOval((x * r), (y * r), r / 1.2, r / 1.2);
+                                marker.fillOval((x * relativeSize), (y * relativeSize), relativeSize / wallSize, relativeSize / wallSize);
                                 marker.setFill(Color.WHITE);
                             }
-
+                            
+                            if(service.goalReached()) {
+                                service.endGame();
+                            }
+                             
                         }
                     }
                     this.prevMoment2 = curMoment;
@@ -108,16 +126,16 @@ public class GameScene {
 
         scene.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.UP) {
-                maze.moveUp();
+                this.service.goUp();
             }
             if (e.getCode() == KeyCode.DOWN) {
-                maze.moveDown();
+                this.service.goDown();
             }
             if (e.getCode() == KeyCode.LEFT) {
-                maze.moveLeft();
+                this.service.goLeft();
             }
             if (e.getCode() == KeyCode.RIGHT) {
-                maze.moveRight();
+                this.service.goRight();
             }
         });
 

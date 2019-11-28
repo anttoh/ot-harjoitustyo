@@ -38,13 +38,13 @@ public class MazeTest {
 
     @Test
     public void currentCellIsRightAtStart() {
-        assertEquals(maze.layout(0, 0), maze.getCurrentCell());
+        assertEquals(maze.getCellAt(0, 0), maze.getCurrentCell());
 
     }
 
     @Test
     public void goalIsCorrectCell() {
-        assertEquals(maze.layout(9, 9), maze.getGoal());
+        assertEquals(maze.getCellAt(9, 9), maze.getGoal());
 
     }
 

@@ -4,39 +4,30 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MazeGenerator {
+public class LayoutGenerator {
 
     private int width; // 2 <= width <= 90
     private int height; // 2 <= height <= 90
     private Cell[][] cells;
     private boolean[][] visited;
 
-    public MazeGenerator(int width, int height) {
-        this.width = width;
-        this.height = height;
-
-        if (this.width < 2) {
-            this.width = 2;
-        }
-        if (this.width > 90) {
-            this.width = 90;
-        }
-
-        if (this.height < 2) {
-            this.height = 2;
-        }
-        if (this.height > 90) {
-            this.height = 90;
-        }
-
-        this.cells = new Cell[this.width][this.height];
-        this.visited = new boolean[this.width][this.height];
+    public LayoutGenerator() {
+        
     }
 
-    public Cell[][] generateAndReturnMazeLayout() {
-        this.initializeCells();
+    public void generateMazeLayout(Cell[][] cells) {
+        this.cells = cells;
+        this.width = this.cells.length;
+        this.height = this.cells[0].length;
+
+        this.visited = new boolean[this.width][this.height];
+        for (int x = 0; x < this.width; x++) {
+            for (int y = 0; y < this.height; y++) {
+                this.visited[x][y] = false;
+            }
+        }
+        
         this.generateMaze(this.getRandomCell());
-        return this.cells;
     }
 
     private Cell getRandomCell() {
@@ -57,14 +48,6 @@ public class MazeGenerator {
                 this.connectCells(c, neighbour);
                 this.visited[neighbour.getX()][neighbour.getY()] = true;
                 this.generateMaze(neighbour);
-            }
-        }
-    }
-
-    private void initializeCells() {
-        for (int x = 0; x < this.width; x++) {
-            for (int y = 0; y < this.height; y++) {
-                this.cells[x][y] = new Cell(x, y);
             }
         }
     }

@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 
 public class MazeGeneratorTest {
 
-    MazeGenerator generator;
+    LayoutGenerator generator;
     Cell[][] layout;
 
     public MazeGeneratorTest() {
@@ -35,12 +35,12 @@ public class MazeGeneratorTest {
 
     @Test
     public void generatedMazeIsRightSize() {
-        generator = new MazeGenerator(10, 10);
+        generator = new LayoutGenerator(10, 10);
         layout = generator.generateAndReturnMazeLayout();
         assertEquals(10, layout.length);
         assertEquals(10, layout[0].length);
 
-        generator = new MazeGenerator(50, 20);
+        generator = new LayoutGenerator(50, 20);
         layout = generator.generateAndReturnMazeLayout();
         assertEquals(50, layout.length);
         assertEquals(20, layout[0].length);
@@ -48,7 +48,7 @@ public class MazeGeneratorTest {
 
     @Test
     public void generatedMazeIs90By90AtMax() {
-        generator = new MazeGenerator(300, 300);
+        generator = new LayoutGenerator(300, 300);
         layout = generator.generateAndReturnMazeLayout();
         assertEquals(90, layout.length);
         assertEquals(90, layout[0].length);
@@ -56,12 +56,12 @@ public class MazeGeneratorTest {
 
     @Test
     public void generatedMazeIs2By2AtMin() {
-        generator = new MazeGenerator(1, 1);
+        generator = new LayoutGenerator(1, 1);
         layout = generator.generateAndReturnMazeLayout();
         assertEquals(2, layout.length);
         assertEquals(2, layout[0].length);
 
-        generator = new MazeGenerator(-100, -100);
+        generator = new LayoutGenerator(-100, -100);
         layout = generator.generateAndReturnMazeLayout();
         assertEquals(2, layout.length);
         assertEquals(2, layout[0].length);
