@@ -8,4 +8,6 @@ päivä | aika | mitä tein
 23.11 | 5 | sunnittelua, tietokannan ja DAOjen toteutusta ja checkstylen käyttöönotto
 25.11 | 1 | näkymien suunnittelu
 26.11 | 7 | näkymien ja niiden välillä siirtymisen luontia, testien luontia, refaktorointia ja luokkakaavion tekeminen 
-yht. | 22 |
+27.11 | 1 | refaktorointia
+28.11 | 4 | lisää refaktorointia (sovelluslogiikan ja käyttölittymän parmpi erotus) ja tästä syntyneiden bugien korjaus (kaikki testit hajosivat)
+yht. | 27 |
