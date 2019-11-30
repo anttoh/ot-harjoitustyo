@@ -10,4 +10,5 @@ päivä | aika | mitä tein
 26.11 | 7 | näkymien ja niiden välillä siirtymisen luontia, testien luontia, refaktorointia ja luokkakaavion tekeminen 
 27.11 | 1 | refaktorointia
 28.11 | 4 | lisää refaktorointia (sovelluslogiikan ja käyttölittymän parmpi erotus) ja tästä syntyneiden bugien korjaus (kaikki testit hajosivat)
-yht. | 27 |
+30.11 | 1 | testien korjaamista
+yht. | 28 |

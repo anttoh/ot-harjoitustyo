@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mazegame.domain;
 
 import org.junit.After;
@@ -15,6 +10,8 @@ import static org.junit.Assert.*;
 public class MazeTest {
 
     Maze maze;
+    Cell[][] layout;
+    LayoutGenerator generator;
 
     public MazeTest() {
     }
@@ -29,7 +26,15 @@ public class MazeTest {
 
     @Before
     public void setUp() {
-        maze = new Maze(10, 10);
+        layout = new Cell[2][2];
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                layout[i][j] = new Cell(i, j);
+            }
+        }
+        generator = new LayoutGenerator();
+        generator.generateMazeLayout(layout);
+        maze = new Maze(layout);
     }
 
     @After
@@ -44,7 +49,7 @@ public class MazeTest {
 
     @Test
     public void goalIsCorrectCell() {
-        assertEquals(maze.getCellAt(9, 9), maze.getGoal());
+        assertEquals(maze.getCellAt(1, 1), maze.getGoal());
 
     }
 
@@ -62,7 +67,6 @@ public class MazeTest {
         If reachedGoal returns true after one of those paths, it's working
          */
         boolean visitedGoal = false;
-        maze = new Maze(2, 2);
 
         maze.moveRight();
         maze.moveDown();

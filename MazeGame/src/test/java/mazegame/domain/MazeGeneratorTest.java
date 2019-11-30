@@ -7,7 +7,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-
 public class MazeGeneratorTest {
 
     LayoutGenerator generator;
@@ -26,7 +25,14 @@ public class MazeGeneratorTest {
 
     @Before
     public void setUp() {
-
+        layout = new Cell[2][2];
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                layout[i][j] = new Cell(i, j);
+            }
+        }
+        generator = new LayoutGenerator();
+        generator.generateMazeLayout(layout);
     }
 
     @After
@@ -34,36 +40,14 @@ public class MazeGeneratorTest {
     }
 
     @Test
-    public void generatedMazeIsRightSize() {
-        generator = new LayoutGenerator(10, 10);
-        layout = generator.generateAndReturnMazeLayout();
-        assertEquals(10, layout.length);
-        assertEquals(10, layout[0].length);
-
-        generator = new LayoutGenerator(50, 20);
-        layout = generator.generateAndReturnMazeLayout();
-        assertEquals(50, layout.length);
-        assertEquals(20, layout[0].length);
+    public void generatedMazeLayoutIsRightSize() {
+        assertEquals(2, layout.length);
+        assertEquals(2, layout[0].length);
     }
 
     @Test
-    public void generatedMazeIs90By90AtMax() {
-        generator = new LayoutGenerator(300, 300);
-        layout = generator.generateAndReturnMazeLayout();
-        assertEquals(90, layout.length);
-        assertEquals(90, layout[0].length);
-    }
-
-    @Test
-    public void generatedMazeIs2By2AtMin() {
-        generator = new LayoutGenerator(1, 1);
-        layout = generator.generateAndReturnMazeLayout();
-        assertEquals(2, layout.length);
-        assertEquals(2, layout[0].length);
-
-        generator = new LayoutGenerator(-100, -100);
-        layout = generator.generateAndReturnMazeLayout();
-        assertEquals(2, layout.length);
-        assertEquals(2, layout[0].length);
+    public void generatedMazeLayoutIsSolvable() {
+        assertEquals(true, layout[0][0].getDown() != layout[0][0].getRight());
+        assertEquals(true, layout[1][1].getUp() != layout[1][1].getLeft());
     }
 }
