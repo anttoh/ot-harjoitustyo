@@ -25,13 +25,14 @@ public class LobbyScene {
         layout.setPadding(new Insets(200));
 
         VBox vbox = new VBox(10);
-        TextField widthInput = new TextField("5");
-        widthInput.setPromptText("width");
-        TextField heightInput = new TextField("5");
-        heightInput.setPromptText("height");
+        TextField widthInput = new TextField("");
+        widthInput.setPromptText("width (2 - 90)");
+        TextField heightInput = new TextField("");
+        heightInput.setPromptText("height (2 - 90)");
         Text alert = new Text("Width and height must be natural numbers "
                 + "between 2 and 90");
         alert.setVisible(false);
+        Text welcome = new Text("Logged in as " + this.ui.getService().getLoggedInUser().getUsername());
 
         Button logout = new Button("logout");
         Button play = new Button("start");
@@ -58,7 +59,9 @@ public class LobbyScene {
 
         vbox.getChildren().addAll(widthInput, heightInput, play, alert);
 
-        layout.setBottom(logout);
+        VBox bottom = new VBox(10);
+        bottom.getChildren().addAll(welcome, logout);
+        layout.setBottom(bottom);
         layout.setCenter(vbox);
 
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();

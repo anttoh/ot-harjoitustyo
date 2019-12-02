@@ -7,12 +7,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class MazeGeneratorTest {
+public class LayoutGeneratorTest {
 
     LayoutGenerator generator;
     Cell[][] layout;
 
-    public MazeGeneratorTest() {
+    public LayoutGeneratorTest() {
     }
 
     @BeforeClass

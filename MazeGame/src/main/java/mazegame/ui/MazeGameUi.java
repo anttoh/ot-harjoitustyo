@@ -26,14 +26,22 @@ public class MazeGameUi extends Application {
         this.stage.setScene(this.loginScene.createAndGet());
         this.stage.show();
     }
-    
+
     public MazeGameService getService() {
         return this.mazeGameService;
     }
-    
-    public void login() {
-        this.stage.setTitle("Lobby");
-        this.stage.setScene(this.lobbyScene.createAndGet());
+
+    public boolean register(String username, String password) {
+        return this.mazeGameService.register(username, password);
+    }
+
+    public boolean login(String username, String password) {
+        boolean succes = this.mazeGameService.login(username, password);
+        if (succes) {
+            this.stage.setTitle("Lobby");
+            this.stage.setScene(this.lobbyScene.createAndGet());
+        }
+        return succes;
     }
 
     public void logout() {

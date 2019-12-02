@@ -13,17 +13,16 @@ public class UserDao implements Dao<User, Integer> {
     @Override
     public void create(User user) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:h2:./mazegame", "a", "");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO User"
+                    + " (username, password)"
+                    + " VALUES (?, ?);");
 
-        PreparedStatement stmt = conn.prepareStatement("INSERT INTO User"
-                + " (username, password)"
-                + " VALUES (?, ?);");
+            stmt.setString(1, user.getUsername());
+            stmt.setString(2, user.getPassword());
 
-        stmt.setString(1, user.getUsername());
-        stmt.setString(2, user.getPassword());
-
-        stmt.executeUpdate();
-        stmt.close();
-        conn.close();
+            stmt.executeUpdate();
+            stmt.close();
+        
     }
 
     @Override
@@ -36,19 +35,44 @@ public class UserDao implements Dao<User, Integer> {
         stmt.setInt(1, key);
         ResultSet rs = stmt.executeQuery();
 
-        if (!rs.next()) {
-            return null;
+        User fullUser = null;
+
+        if (rs.next()) {
+            fullUser = new User(rs.getInt("id"),
+                    rs.getString("username"),
+                    rs.getString("password"));
+
         }
-
-        User user = new User(rs.getInt("id"),
-                rs.getString("username"),
-                rs.getString("password"));
-
         stmt.close();
         rs.close();
         conn.close();
 
-        return user;
+        return fullUser;
+    }
+
+    public User read(User user) throws SQLException {
+        Connection conn = DriverManager.getConnection("jdbc:h2:./mazegame", "a", "");
+
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User"
+                + " WHERE username = ? AND password = ?;");
+
+        stmt.setString(1, user.getUsername());
+        stmt.setString(2, user.getPassword());
+        ResultSet rs = stmt.executeQuery();
+
+        User fullUser = null;
+
+        if (rs.next()) {
+            fullUser = new User(rs.getInt("id"),
+                    rs.getString("username"),
+                    rs.getString("password"));
+
+        }
+        stmt.close();
+        rs.close();
+        conn.close();
+
+        return fullUser;
     }
 
     @Override

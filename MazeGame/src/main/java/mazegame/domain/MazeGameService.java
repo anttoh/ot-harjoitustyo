@@ -1,7 +1,14 @@
 package mazegame.domain;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import mazegame.dao.UserDao;
+
 public class MazeGameService {
 
+    private UserDao userDao;
+    private User loggedIn;
     private LayoutGenerator generator;
     private Cell[][] layout;
     private Maze maze;
@@ -10,8 +17,41 @@ public class MazeGameService {
     private boolean gameOngoing;
 
     public MazeGameService() {
+        this.loggedIn = null;
+        this.userDao = new UserDao();
         this.generator = new LayoutGenerator();
         this.gameOngoing = false;
+    }
+
+    public User getLoggedInUser() {
+        return this.loggedIn;
+    }
+
+    public boolean register(String username, String password) {
+        User user = new User(username, password);
+        try {
+            this.userDao.create(user);
+        } catch (SQLException ex) {
+            // username was taken
+            return false;
+        }
+        return true;
+    }
+
+    public boolean login(String username, String password) {
+        User user = new User(username, password);
+        try {
+            user = this.userDao.read(user);
+        } catch (SQLException ex) {
+            user = null;
+            Logger.getLogger(MazeGameService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.loggedIn = user;
+        return user != null;
+    }
+
+    public void logout() {
+        this.loggedIn = null;
     }
 
     public void startGame(int width, int height) {

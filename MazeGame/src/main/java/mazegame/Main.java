@@ -10,7 +10,7 @@ import mazegame.ui.MazeGameUi;
 public class Main {
 
     public static void main(String[] args) {
-        //initDB();
+        // initDB();
         MazeGameUi.main(args);
     }
 
@@ -24,7 +24,7 @@ public class Main {
 
             conn.prepareStatement("CREATE TABLE User ("
                     + " id SERIAL,"
-                    + " username VARCHAR(100),"
+                    + " username VARCHAR(100) UNIQUE,"
                     + " password VARCHAR(100),"
                     + " PRIMARY KEY(id)"
                     + ");").executeUpdate();

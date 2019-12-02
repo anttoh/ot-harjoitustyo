@@ -11,4 +11,5 @@ päivä | aika | mitä tein
 27.11 | 1 | refaktorointia
 28.11 | 4 | lisää refaktorointia (sovelluslogiikan ja käyttölittymän parmpi erotus) ja tästä syntyneiden bugien korjaus (kaikki testit hajosivat)
 30.11 | 1 | testien korjaamista
-yht. | 28 |
+2.12 | 3 | rekisöröitymis ja kirjautumis logiikan luonti ja sen yhdistäminen käyttöliittymään
+yht. | 31 |
