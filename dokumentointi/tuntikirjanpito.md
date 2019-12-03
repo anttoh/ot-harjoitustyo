@@ -12,4 +12,5 @@ päivä | aika | mitä tein
 28.11 | 4 | lisää refaktorointia (sovelluslogiikan ja käyttölittymän parmpi erotus) ja tästä syntyneiden bugien korjaus (kaikki testit hajosivat)
 30.11 | 1 | testien korjaamista
 2.12 | 3 | rekisöröitymis ja kirjautumis logiikan luonti ja sen yhdistäminen käyttöliittymään
-yht. | 31 |
+3.12 | 5 | enum luokan luonti, refaktorointia, testien luomista, sekvenssikaavion luonti, jar:n luonti ja bugin korjaus(hahmoa ei pystynyt liikuttamaan jar:issa)
+yht. | 36 |
