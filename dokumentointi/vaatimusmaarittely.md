@@ -8,17 +8,17 @@ Sovellus on yksinkertainen sokkelo peli. Jokaisen pelin alussa sovellus luo satu
 
 ### Ennen kirjautumista
 
-- käyttäjä voi luoda käyttäjätunnuksen
-  - tunnuksen tulee olla uniikki ja salasanan vähintään 3 merkkiä pitkä
+- (tehty) käyttäjä voi luoda käyttäjätunnuksen
+  - (tehty) tunnuksen tulee olla uniikki ja salasanan vähintään 5 merkkiä pitkä
 
-- käyttäjä voi kirjautua sisään
-  - kirjautuminen onnistuu, jos käyttätunnus ja salasana ovat oikein
+- (tehty) käyttäjä voi kirjautua sisään
+  - (tehty) kirjautuminen onnistuu, jos käyttätunnus ja salasana ovat oikein
 
 ### Kirjautumisen jälkeen
 
 - (tehty) käyttäjä siirtyy avausnäkymään (lobby)
 - (tehty) käyttäjä voi aloittaa pelin, jolloin tämä siirtyy pelin näkymään
-- käyttäjä voi kirjautua ulos
+- (tehty) käyttäjä voi kirjautua ulos
 
 ### Käyttäjän pelatessa
 
