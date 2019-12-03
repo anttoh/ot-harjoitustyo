@@ -10,6 +10,11 @@ Sovellus on yksinkertainen sokkelo peli. Jokaisen pelin alussa sovellus luo satu
 
 [Arkkitehtuurikuvaus](./dokumentointi/arkkitehtuuri.md)
 
+## Releaset
+
+[Viikko 5](https://github.com/anttoh/MazeGame/releases/tag/viikko5)
+
+
 ## Komentorivitoiminnot
 
 ### Testaus
