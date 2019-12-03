@@ -13,16 +13,16 @@ public class UserDao implements Dao<User, Integer> {
     @Override
     public void create(User user) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:h2:./mazegame", "a", "");
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO User"
-                    + " (username, password)"
-                    + " VALUES (?, ?);");
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO User"
+                + " (username, password)"
+                + " VALUES (?, ?);");
 
-            stmt.setString(1, user.getUsername());
-            stmt.setString(2, user.getPassword());
+        stmt.setString(1, user.getUsername());
+        stmt.setString(2, user.getPassword());
 
-            stmt.executeUpdate();
-            stmt.close();
-        
+        stmt.executeUpdate();
+        stmt.close();
+
     }
 
     @Override

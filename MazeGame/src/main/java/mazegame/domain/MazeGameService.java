@@ -103,26 +103,26 @@ public class MazeGameService {
         this.maze.moveRight();
     }
 
-    public int[][] getLayoutAsIntsForDrawing() {
-        int[][] intLayout = new int[width][height];
+    public CellTypeForDrawing[][] getLayoutForDrawing() {
+        CellTypeForDrawing[][] layoutForDrawing = new CellTypeForDrawing[width][height];
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 Cell curCell = this.getCellAtPos(i, j);
                 if (curCell.getRight() == curCell.getDown()) {
-                    intLayout[i][j] = 0;
+                    layoutForDrawing[i][j] = CellTypeForDrawing.HAS_NEITHER_RIGHT_NOR_DOWN_NEIGHBOUR;
                 } else if (curCell.getRight() != curCell) {
                     if (curCell.getDown() != curCell) {
-                        intLayout[i][j] = 3;
+                        layoutForDrawing[i][j] = CellTypeForDrawing.HAS_BOTH_RIGHT_AND_DOWN_NEIGHBOUR;
                     } else {
-                        intLayout[i][j] = 1;
+                        layoutForDrawing[i][j] = CellTypeForDrawing.HAS_RIGHT_NEIGHBOUR;
                     }
                 } else {
-                    intLayout[i][j] = 2;
+                    layoutForDrawing[i][j] = CellTypeForDrawing.HAS_DOWN_NEIGHBOUR;
                 }
 
             }
         }
-        return intLayout;
+        return layoutForDrawing;
     }
 
     private void initializeLayout() {

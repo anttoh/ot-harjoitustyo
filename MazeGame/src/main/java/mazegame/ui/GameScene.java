@@ -2,12 +2,14 @@ package mazegame.ui;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import javafx.animation.AnimationTimer;
+import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -15,6 +17,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 
+import mazegame.domain.CellTypeForDrawing;
 import mazegame.domain.MazeGameService;
 
 public class GameScene {
@@ -58,9 +61,9 @@ public class GameScene {
 
         Scene scene = new Scene(layout, screenBounds.getWidth(), screenBounds.getHeight());
 
-        int[][] l = this.service.getLayoutAsIntsForDrawing();
-        int width = l.length;
-        int height = l[0].length;
+        CellTypeForDrawing[][] layoutForDrawing = this.service.getLayoutForDrawing();
+        int width = layoutForDrawing.length;
+        int height = layoutForDrawing[0].length;
         int relativeSize = size / Math.max(width, height);
         double wallSize = 1.2;
 
@@ -80,26 +83,26 @@ public class GameScene {
                     this.prevMoment1 = curMoment;
                 }
 
-                if (curMoment - prevMoment2 > 1000000) {
+                if (curMoment - prevMoment2 > 100000) {
                     for (int x = 0; x < width; x++) {
                         for (int y = 0; y < height; y++) {
-                            int type = l[x][y];
+                            CellTypeForDrawing type = layoutForDrawing[x][y];
                             switch (type) {
-                                case 0:
+                                case HAS_NEITHER_RIGHT_NOR_DOWN_NEIGHBOUR:
                                     marker.fillRect((x * relativeSize), (y * relativeSize), relativeSize / wallSize, relativeSize / wallSize);
                                     break;
-                                case 1:
+                                case HAS_RIGHT_NEIGHBOUR:
                                     marker.fillRect((x * relativeSize), (y * relativeSize), relativeSize, relativeSize / wallSize);
                                     break;
-                                case 2:
+                                case HAS_DOWN_NEIGHBOUR:
                                     marker.fillRect((x * relativeSize), (y * relativeSize), relativeSize / wallSize, relativeSize);
                                     break;
-                                default:
+                                case HAS_BOTH_RIGHT_AND_DOWN_NEIGHBOUR:
                                     marker.fillRect((x * relativeSize), (y * relativeSize), relativeSize / wallSize, relativeSize);
                                     marker.fillRect((x * relativeSize), (y * relativeSize), relativeSize, relativeSize / wallSize);
                                     break;
                             }
-                            
+
                             if (service.mazeGoal() == service.getCellAtPos(x, y)) {
                                 marker.setFill(Color.GREEN);
                                 marker.fillRect((x * relativeSize), (y * relativeSize), relativeSize / wallSize, relativeSize / wallSize);
@@ -111,11 +114,11 @@ public class GameScene {
                                 marker.fillOval((x * relativeSize), (y * relativeSize), relativeSize / wallSize, relativeSize / wallSize);
                                 marker.setFill(Color.WHITE);
                             }
-                            
-                            if(service.goalReached()) {
+
+                            if (service.goalReached()) {
                                 service.endGame();
                             }
-                             
+
                         }
                     }
                     this.prevMoment2 = curMoment;
@@ -124,18 +127,24 @@ public class GameScene {
             }
         }.start();
 
-        scene.setOnKeyPressed(e -> {
-            if (e.getCode() == KeyCode.UP) {
-                this.service.goUp();
-            }
-            if (e.getCode() == KeyCode.DOWN) {
-                this.service.goDown();
-            }
-            if (e.getCode() == KeyCode.LEFT) {
-                this.service.goLeft();
-            }
-            if (e.getCode() == KeyCode.RIGHT) {
-                this.service.goRight();
+        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                switch (event.getCode()) {
+                    case UP:
+                        service.goUp();
+                        break;
+                    case DOWN:
+                        service.goDown();
+                        break;
+                    case LEFT:
+                        service.goLeft();
+                        break;
+                    case RIGHT:
+                        service.goRight();
+                        break;
+
+                }
             }
         });
 
