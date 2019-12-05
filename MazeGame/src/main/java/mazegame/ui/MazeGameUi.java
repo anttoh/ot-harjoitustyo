@@ -56,9 +56,9 @@ public class MazeGameUi extends Application {
         this.stage.setFullScreen(true);
     }
 
-    public void exitGame() {
+    public void exitGame(int time) {
         this.stage.setTitle("Lobby");
-        this.mazeGameService.endGame();
+        this.mazeGameService.exitGame(time);
         this.stage.setScene(this.lobbyScene.createAndGet());
         this.stage.setMaximized(true);
     }

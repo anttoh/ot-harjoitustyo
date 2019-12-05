@@ -3,22 +3,30 @@ package mazegame.domain;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import mazegame.dao.DifficultyDao;
+import mazegame.dao.GameDao;
 import mazegame.dao.UserDao;
 
 public class MazeGameService {
 
     private UserDao userDao;
+    private GameDao gameDao;
+    private DifficultyDao difficultyDao;
     private User loggedIn;
     private LayoutGenerator generator;
     private Cell[][] layout;
     private Maze maze;
     private int width;
     private int height;
+    private String gameType;
     private boolean gameOngoing;
 
     public MazeGameService() {
+        this.gameType = null;
         this.loggedIn = null;
         this.userDao = new UserDao();
+        this.difficultyDao = new DifficultyDao();
+        this.gameDao = new GameDao();
         this.generator = new LayoutGenerator();
         this.gameOngoing = false;
     }
@@ -55,6 +63,26 @@ public class MazeGameService {
     }
 
     public void startGame(int width, int height) {
+        if (width == height) {
+            switch (width) {
+                case 5:
+                    this.gameType = "very easy";
+                    break;
+                case 10:
+                    this.gameType = "easy";
+                    break;
+                case 20:
+                    this.gameType = "medium";
+                    break;
+                case 40:
+                    this.gameType = "hard";
+                    break;
+                case 80:
+                    this.gameType = "ultra hard";
+                    break;
+
+            }
+        }
         this.gameOngoing = true;
         this.width = width;
         this.height = height;
@@ -65,6 +93,24 @@ public class MazeGameService {
 
     public void endGame() {
         this.gameOngoing = false;
+    }
+
+    public void exitGame(int time) {
+        if (this.goalReached() && this.gameType != null) {
+            try {
+                Difficulty difficulty = new Difficulty(this.gameType);
+                if (this.difficultyDao.read(difficulty) == null) {
+                    this.difficultyDao.create(difficulty);
+                }
+                    difficulty = this.difficultyDao.read(difficulty);
+                    Game game = new Game(loggedIn, time, difficulty);
+                    this.gameDao.create(game);
+            } catch (SQLException ex) {
+                Logger.getLogger(MazeGameService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        this.gameType = null;
     }
 
     public boolean gameEnded() {

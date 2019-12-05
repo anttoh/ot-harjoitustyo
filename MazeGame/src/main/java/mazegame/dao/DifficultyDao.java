@@ -6,78 +6,73 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import mazegame.domain.User;
+import mazegame.domain.Difficulty;
 
-public class UserDao implements Dao<User, Integer> {
+public class DifficultyDao implements Dao<Difficulty, Integer> {
 
     @Override
-    public void create(User user) throws SQLException {
+    public void create(Difficulty difficulty) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:h2:./mazegame", "a", "");
-        PreparedStatement stmt = conn.prepareStatement("INSERT INTO User"
-                + " (username, password)"
-                + " VALUES (?, ?);");
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO Difficulty"
+                + " (name)"
+                + " VALUES (?);");
 
-        stmt.setString(1, user.getUsername());
-        stmt.setString(2, user.getPassword());
+        stmt.setString(1, difficulty.getName());
 
         stmt.executeUpdate();
         stmt.close();
         conn.close();
-
     }
 
     @Override
-    public User read(Integer key) throws SQLException {
+    public Difficulty read(Integer key) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:h2:./mazegame", "a", "");
 
-        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User"
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Difficulty"
                 + " WHERE id = ?;");
 
         stmt.setInt(1, key);
         ResultSet rs = stmt.executeQuery();
 
-        User fullUser = null;
+        Difficulty difficulty = null;
 
         if (rs.next()) {
-            fullUser = new User(rs.getInt("id"),
-                    rs.getString("username"),
-                    rs.getString("password"));
+            difficulty = new Difficulty(rs.getInt("id"),
+                    rs.getString("name"));
 
         }
         stmt.close();
         rs.close();
         conn.close();
 
-        return fullUser;
+        return difficulty;
     }
 
-    public User read(User user) throws SQLException {
+    public Difficulty read(Difficulty difficulty) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:h2:./mazegame", "a", "");
 
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User"
-                + " WHERE username = ? AND password = ?;");
+                + " WHERE name = ?;");
 
-        stmt.setString(1, user.getUsername());
-        stmt.setString(2, user.getPassword());
+        stmt.setString(1, difficulty.getName());
         ResultSet rs = stmt.executeQuery();
 
-        User fullUser = null;
+        Difficulty fullDifficulty = null;
 
         if (rs.next()) {
-            fullUser = new User(rs.getInt("id"),
-                    rs.getString("username"),
-                    rs.getString("password"));
+            fullDifficulty = new Difficulty(rs.getInt("id"),
+                    rs.getString("name"));
 
         }
         stmt.close();
         rs.close();
         conn.close();
 
-        return fullUser;
+        return fullDifficulty;
     }
 
     @Override
-    public User update(User object) throws SQLException {
+    public Difficulty update(Difficulty object) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -87,7 +82,7 @@ public class UserDao implements Dao<User, Integer> {
     }
 
     @Override
-    public List<User> list() throws SQLException {
+    public List<Difficulty> list() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

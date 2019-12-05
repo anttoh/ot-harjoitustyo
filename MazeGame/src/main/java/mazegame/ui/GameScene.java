@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
@@ -75,7 +74,7 @@ public class GameScene {
             public void handle(long curMoment) {
                 if (service.gameEnded()) {
                     stop();
-                    ui.exitGame();
+                    ui.exitGame(time.get());
                 }
 
                 if (curMoment - prevMoment1 > 1000000000) {

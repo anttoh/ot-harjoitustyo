@@ -13,4 +13,5 @@ päivä | aika | mitä tein
 30.11 | 1 | testien korjaamista
 2.12 | 3 | rekisöröitymis ja kirjautumis logiikan luonti ja sen yhdistäminen käyttöliittymään
 3.12 | 5 | enum luokan luonti, refaktorointia, testien luomista, sekvenssikaavion luonti, jar:n luonti ja bugin korjaus(hahmoa ei pystynyt liikuttamaan jar:issa)
+5.12 | 3 | valmiiksi määritellyjen vaikeustasojen toteuttaminen ja uuden tietokantatalulun luonti ja siihen liittyvä logiikka 
 yht. | 36 |
