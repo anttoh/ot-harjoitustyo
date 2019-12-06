@@ -20,6 +20,7 @@ public class MazeGameService {
     private int height;
     private String gameType;
     private boolean gameOngoing;
+    double[] averegeSolveTimes;
 
     public MazeGameService() {
         this.gameType = null;
@@ -29,6 +30,7 @@ public class MazeGameService {
         this.gameDao = new GameDao();
         this.generator = new LayoutGenerator();
         this.gameOngoing = false;
+        this.averegeSolveTimes = null;
     }
 
     public User getLoggedInUser() {
@@ -55,11 +57,16 @@ public class MazeGameService {
             Logger.getLogger(MazeGameService.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.loggedIn = user;
+        this.getLoggedInUsersAvereges();
         return user != null;
     }
 
     public void logout() {
         this.loggedIn = null;
+    }
+
+    public double[] getLoggedInUsersAveregeSolveTimes() {
+        return this.averegeSolveTimes;
     }
 
     public void startGame(int width, int height) {
@@ -109,7 +116,7 @@ public class MazeGameService {
                 Logger.getLogger(MazeGameService.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
+        this.getLoggedInUsersAvereges();
         this.gameType = null;
     }
 
@@ -176,6 +183,16 @@ public class MazeGameService {
         for (int x = 0; x < this.width; x++) {
             for (int y = 0; y < this.height; y++) {
                 this.layout[x][y] = new Cell(x, y);
+            }
+        }
+    }
+
+    private void getLoggedInUsersAvereges() {
+        if (this.loggedIn != null) {
+            try {
+                this.averegeSolveTimes = this.userDao.getAveregeSolveTimesForEachDifficultyFromEasiest(loggedIn);
+            } catch (SQLException ex) {
+                Logger.getLogger(MazeGameService.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

@@ -34,6 +34,7 @@ public class LobbyScene {
                 + "between 2 and 90");
         alert.setVisible(false);
         Text welcome = new Text("Logged in as " + this.ui.getService().getLoggedInUser().getUsername());
+        Text averege = new Text("Your averege solve time in medium difficulty is " + this.ui.getService().getLoggedInUsersAveregeSolveTimes()[3] + " seconds");
 
         Button logout = new Button("logout");
         Button play = new Button("start");
@@ -50,6 +51,7 @@ public class LobbyScene {
             String size = "5";
             widthInput.setText(size);
             heightInput.setText(size);
+            averege.setText("Your averege solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersAveregeSolveTimes()[1] + " seconds");
 
         });
 
@@ -57,6 +59,7 @@ public class LobbyScene {
             String size = "10";
             widthInput.setText(size);
             heightInput.setText(size);
+            averege.setText("Your averege solve time in easy difficulty is " + this.ui.getService().getLoggedInUsersAveregeSolveTimes()[2] + " seconds");
 
         });
 
@@ -64,6 +67,7 @@ public class LobbyScene {
             String size = "20";
             widthInput.setText(size);
             heightInput.setText(size);
+            averege.setText("Your averege solve time in medium difficulty is " + this.ui.getService().getLoggedInUsersAveregeSolveTimes()[3] + " seconds");
 
         });
 
@@ -71,6 +75,7 @@ public class LobbyScene {
             String size = "40";
             widthInput.setText(size);
             heightInput.setText(size);
+            averege.setText("Your averege solve time in hard difficulty is " + this.ui.getService().getLoggedInUsersAveregeSolveTimes()[4] + " seconds");
 
         });
 
@@ -78,6 +83,7 @@ public class LobbyScene {
             String size = "80";
             widthInput.setText(size);
             heightInput.setText(size);
+            averege.setText("Your averege solve time in ultra hard difficulty is " + this.ui.getService().getLoggedInUsersAveregeSolveTimes()[5] + " seconds");
 
         });
 
@@ -105,6 +111,7 @@ public class LobbyScene {
 
         VBox bottom = new VBox(10);
         bottom.getChildren().addAll(welcome, logout);
+        layout.setTop(averege);
         layout.setBottom(bottom);
         layout.setCenter(vbox);
 
