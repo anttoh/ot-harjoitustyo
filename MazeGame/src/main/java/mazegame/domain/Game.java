@@ -2,23 +2,23 @@ package mazegame.domain;
 
 public class Game {
 
-    private int id;
+    private long id;
     private User user;
-    private int time;
     private Difficulty difficulty;
+    private int time;
 
-    public Game(int id, User user, int time, Difficulty difficulty) {
+    public Game(long id, User user, Difficulty difficulty, int time) {
         this.id = id;
         this.user = user;
-        this.time = time;
         this.difficulty = difficulty;
+        this.time = time;
     }
 
-    public Game(User user, int time, Difficulty difficulty) {
-        this(0, user, time, difficulty);
+    public Game(User user, Difficulty difficulty, int time) {
+        this(0, user, difficulty, time);
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -26,12 +26,11 @@ public class Game {
         return user;
     }
 
-    public int getTime() {
-        return time;
-    }
-
     public Difficulty getDifficulty() {
         return difficulty;
     }
 
+    public int getTime() {
+        return time;
+    }
 }

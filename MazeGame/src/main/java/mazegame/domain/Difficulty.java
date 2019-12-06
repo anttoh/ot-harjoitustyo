@@ -2,10 +2,10 @@ package mazegame.domain;
 
 public class Difficulty {
 
-    private int id;
+    private long id;
     private String name;
 
-    public Difficulty(int id, String name) {
+    public Difficulty(long id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -14,7 +14,7 @@ public class Difficulty {
         this(0, name);
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

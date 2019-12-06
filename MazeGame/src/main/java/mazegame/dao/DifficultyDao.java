@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.List;
 import mazegame.domain.Difficulty;
 
-public class DifficultyDao implements Dao<Difficulty, Integer> {
+public class DifficultyDao implements Dao<Difficulty, Long> {
 
     @Override
     public void create(Difficulty difficulty) throws SQLException {
@@ -25,13 +25,13 @@ public class DifficultyDao implements Dao<Difficulty, Integer> {
     }
 
     @Override
-    public Difficulty read(Integer key) throws SQLException {
+    public Difficulty read(Long key) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:h2:./mazegame", "a", "");
 
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Difficulty"
                 + " WHERE id = ?;");
 
-        stmt.setInt(1, key);
+        stmt.setLong(1, key);
         ResultSet rs = stmt.executeQuery();
 
         Difficulty difficulty = null;
@@ -51,7 +51,7 @@ public class DifficultyDao implements Dao<Difficulty, Integer> {
     public Difficulty read(Difficulty difficulty) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:h2:./mazegame", "a", "");
 
-        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User"
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Difficulty"
                 + " WHERE name = ?;");
 
         stmt.setString(1, difficulty.getName());
@@ -77,7 +77,7 @@ public class DifficultyDao implements Dao<Difficulty, Integer> {
     }
 
     @Override
-    public void delete(Integer key) throws SQLException {
+    public void delete(Long key) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

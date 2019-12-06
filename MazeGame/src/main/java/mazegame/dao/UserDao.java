@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.List;
 import mazegame.domain.User;
 
-public class UserDao implements Dao<User, Integer> {
+public class UserDao implements Dao<User, Long> {
 
     @Override
     public void create(User user) throws SQLException {
@@ -27,13 +27,13 @@ public class UserDao implements Dao<User, Integer> {
     }
 
     @Override
-    public User read(Integer key) throws SQLException {
+    public User read(Long key) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:h2:./mazegame", "a", "");
 
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User"
                 + " WHERE id = ?;");
 
-        stmt.setInt(1, key);
+        stmt.setLong(1, key);
         ResultSet rs = stmt.executeQuery();
 
         User fullUser = null;
@@ -82,7 +82,7 @@ public class UserDao implements Dao<User, Integer> {
     }
 
     @Override
-    public void delete(Integer key) throws SQLException {
+    public void delete(Long key) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

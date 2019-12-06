@@ -101,11 +101,10 @@ public class LobbyScene {
             ui.logout();
         });
 
-        vbox.getChildren().addAll(widthInput, heightInput, play, alert);
+        vbox.getChildren().addAll(options, widthInput, heightInput, play, alert);
 
         VBox bottom = new VBox(10);
         bottom.getChildren().addAll(welcome, logout);
-        layout.setTop(options);
         layout.setBottom(bottom);
         layout.setCenter(vbox);
 
