@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Class responsible for generating the layout for the maze
+ */
 public class LayoutGenerator {
 
     private int width; // 2 <= width <= 90
@@ -12,9 +15,17 @@ public class LayoutGenerator {
     private boolean[][] visited;
 
     public LayoutGenerator() {
-        
+
     }
 
+    /**
+     * Method creates the mazes layout in the given 2d array of Cells. This is
+     * done by connecting adjacent cells by the maze generating algorithm,
+     * details of which are irrelevant. Method doesn't return anything, it
+     * simply changes the cells it receives as parameter.
+     *
+     * @param cells 2d array of cells, which are not yet connected
+     */
     public void generateMazeLayout(Cell[][] cells) {
         this.cells = cells;
         this.width = this.cells.length;
@@ -26,7 +37,7 @@ public class LayoutGenerator {
                 this.visited[x][y] = false;
             }
         }
-        
+
         this.generateMaze(this.getRandomCell());
     }
 
