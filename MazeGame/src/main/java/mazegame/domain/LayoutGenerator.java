@@ -20,9 +20,9 @@ public class LayoutGenerator {
 
     /**
      * Method creates the mazes layout in the given 2d array of Cells. This is
-     * done by connecting adjacent cells by the maze generating algorithm,
-     * details of which are irrelevant. Method doesn't return anything, it
-     * simply changes the cells it receives as parameter.
+     * done by connecting adjacent cells using recursive backtracking algorithm.
+     * Method doesn't return anything, it simply changes the cells it receives
+     * as parameter.
      *
      * @param cells 2d array of cells, which are not yet connected
      */
@@ -38,17 +38,10 @@ public class LayoutGenerator {
             }
         }
 
-        this.generateMaze(this.getRandomCell());
+        this.generateMazeRecursively(this.getRandomCell());
     }
 
-    private Cell getRandomCell() {
-        int randX = (int) (Math.random() * this.width);
-        int randY = (int) (Math.random() * this.height);
-
-        return this.cells[randX][randY];
-    }
-
-    private void generateMaze(Cell c) {
+    private void generateMazeRecursively(Cell c) {
         List neighbours = this.getNeighbours(c);
 
         Collections.shuffle(neighbours);
@@ -58,7 +51,7 @@ public class LayoutGenerator {
             if (!visited[neighbour.getX()][neighbour.getY()]) {
                 this.connectCells(c, neighbour);
                 this.visited[neighbour.getX()][neighbour.getY()] = true;
-                this.generateMaze(neighbour);
+                this.generateMazeRecursively(neighbour);
             }
         }
     }
@@ -102,5 +95,12 @@ public class LayoutGenerator {
         }
 
         return neighbours;
+    }
+
+    private Cell getRandomCell() {
+        int randX = (int) (Math.random() * this.width);
+        int randY = (int) (Math.random() * this.height);
+
+        return this.cells[randX][randY];
     }
 }

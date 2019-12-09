@@ -96,7 +96,7 @@ public class LobbyScene {
                 }
                 widthInput.setText("");
                 heightInput.setText("");
-                ui.play(width, height);
+                ui.startGame(width, height);
             } catch (NumberFormatException exception) {
                 alert.setVisible(true);
             }

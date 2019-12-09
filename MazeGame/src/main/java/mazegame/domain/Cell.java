@@ -5,7 +5,6 @@ package mazegame.domain;
  * 4 neighbours, the one above it, the one below it, and ones on its left and
  * right sides. By default these neighbours are the cell itself. If you tried to
  * get cells neighbour and it didn't have one, you would get the cell itself
- * Class offers getters and setter
  */
 public class Cell {
 

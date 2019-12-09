@@ -8,7 +8,7 @@ import mazegame.dao.GameDao;
 import mazegame.dao.UserDao;
 
 /**
- * Class responsible for acting as an interface for the ui, offering public
+ * Class responsible for acting as an interface for the UI, offering public
  * methods handling all the applications logic.
  */
 public class MazeGameService {
@@ -22,12 +22,12 @@ public class MazeGameService {
     private Maze maze;
     private int width;
     private int height;
-    private String gameType;
+    private Difficulty difficulty;
     private boolean gameOngoing;
     private double[] averegeSolveTimes;
 
     public MazeGameService() {
-        this.gameType = null;
+        this.difficulty = null;
         this.loggedIn = null;
         this.userDao = new UserDao();
         this.difficultyDao = new DifficultyDao();
@@ -116,32 +116,13 @@ public class MazeGameService {
      * @param height height of the maze
      */
     public void startGame(int width, int height) {
-        if (width == height) {
-            switch (width) {
-                case 5:
-                    this.gameType = "very easy";
-                    break;
-                case 10:
-                    this.gameType = "easy";
-                    break;
-                case 20:
-                    this.gameType = "medium";
-                    break;
-                case 40:
-                    this.gameType = "hard";
-                    break;
-                case 80:
-                    this.gameType = "ultra hard";
-                    break;
-
-            }
-        }
-        this.gameOngoing = true;
         this.width = width;
         this.height = height;
+        this.gameOngoing = true;
         this.initializeLayout();
         this.generator.generateMazeLayout(this.layout);
         this.maze = new Maze(this.layout);
+        this.setDifficulty();
     }
 
     /**
@@ -161,21 +142,16 @@ public class MazeGameService {
      * @param time time it took to finish the maze
      */
     public void exitGame(int time) {
-        if (this.goalReached() && this.gameType != null) {
+        if (this.goalReached() && this.difficulty != null) {
             try {
-                Difficulty difficulty = new Difficulty(this.gameType);
-                if (this.difficultyDao.read(difficulty) == null) {
-                    this.difficultyDao.create(difficulty);
-                }
-                difficulty = this.difficultyDao.read(difficulty);
-                Game game = new Game(loggedIn, difficulty, time);
+                this.difficulty = this.difficultyDao.read(this.difficulty);
+                Game game = new Game(this.loggedIn, this.difficulty, time);
                 this.gameDao.create(game);
             } catch (SQLException ex) {
                 Logger.getLogger(MazeGameService.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         this.getLoggedInUsersAvereges();
-        this.gameType = null;
     }
 
     /**
@@ -258,9 +234,9 @@ public class MazeGameService {
 
     /**
      * Method returns a layout of the maze as a 2d array of enum type
-     * CellTypeForDrawing. This layout makes it simple to draw the maze in qui.
+     * CellTypeForDrawing. This layout makes it simple to draw the maze in UI.
      *
-     * @return maze's layout in a format that makes it easy for gui to draw the
+     * @return maze's layout in a format that makes it easy for UI to draw the
      * maze
      */
     public CellTypeForDrawing[][] getLayoutForDrawing() {
@@ -300,6 +276,24 @@ public class MazeGameService {
                 this.averegeSolveTimes = this.userDao.getAveregeSolveTimesForEachDifficultyFromEasiest(loggedIn);
             } catch (SQLException ex) {
                 Logger.getLogger(MazeGameService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    private void setDifficulty() {
+        if (this.width == this.height) {
+            if (this.width == 5) {
+                this.difficulty = new Difficulty("very easy");
+            } else if (this.width == 10) {
+                this.difficulty = new Difficulty("easy");
+            } else if (this.width == 20) {
+                this.difficulty = new Difficulty("medium");
+            } else if (this.width == 40) {
+                this.difficulty = new Difficulty("hard");
+            } else if (this.width == 80) {
+                this.difficulty = new Difficulty("ultra hard");
+            } else {
+                this.difficulty = null;
             }
         }
     }
