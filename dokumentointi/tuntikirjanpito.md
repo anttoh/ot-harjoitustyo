@@ -16,4 +16,5 @@ päivä | aika | mitä tein
 5.12 | 3 | valmiiksi määritellyjen vaikeustasojen toteuttaminen ja uuden tietokantatalulun luonti ja siihen liittyvä logiikka 
 6.12 | 5 | jatkoa eiliseen + tietokannan siistintää (turhien välitaulujen poistaminen) ja käyttäjän ratkaisuaikojen keskiarvojen laskeminen ja näyttäminen tapauskohtaisesti toteutus 
 8.12 | 2 | suunnittelua ja JavaDoc:in aloitus
-yht. | 46 |
+9.12 | 3 | JavaDoc:in jatkoa, rafaktorointia + refaktoroinnista syntyneen bugin etsiminen ja korjaaminen
+yht. | 49 |
