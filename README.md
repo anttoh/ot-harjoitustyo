@@ -13,6 +13,7 @@ Sovellus on yksinkertainen sokkelo peli. Jokaisen pelin alussa sovellus luo satu
 ## Releaset
 
 [Viikko 5](https://github.com/anttoh/ot-harjoitustyo/releases/tag/viikko5)
+[Viikko 6](https://github.com/anttoh/ot-harjoitustyo/releases/tag/viikko6)
 
 
 ## Komentorivitoiminnot
@@ -43,6 +44,15 @@ mvn package
 
 generoi hakemistoon _target_ suoritettavan jar-tiedoston _MazeGame-1.0-SNAPSHOT.jar_
 
+### JavaDoc
+
+JavaDoc generoidaan komennolla
+
+```
+mvn javadoc:javadoc
+```
+
+JavaDocia voi tarkastella avaamalla selaimella tiedosto _target/site/apidocs/index.html_
 
 ### Checkstyle
 
@@ -53,5 +63,3 @@ Tiedostoon [checkstyle.xml](./MazeGame/checkstyle.xml) määrittelemät tarkistu
 ```
 
 Mahdolliset virheilmoitukset selviävät avaamalla selaimella tiedosto _target/site/checkstyle.html_
-
-
