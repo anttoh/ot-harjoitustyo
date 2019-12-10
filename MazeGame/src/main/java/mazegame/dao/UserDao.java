@@ -49,6 +49,20 @@ public class UserDao {
         return fullUser;
     }
 
+    public void delete(User user) throws SQLException {
+        Connection conn = DriverManager.getConnection("jdbc:h2:./mazegame", "a", "");
+
+        PreparedStatement stmt = conn.prepareStatement("DELETE FROM User"
+                + " WHERE id = ?;");
+
+        stmt.setLong(1, user.getId());
+        stmt.executeUpdate();
+
+        stmt.close();
+        conn.close();
+
+    }
+
     public double[] getAveregeSolveTimesForEachDifficultyFromEasiest(User user) throws SQLException {
         double[] times = new double[6];
         for (int i = 0; i < 6; i++) {

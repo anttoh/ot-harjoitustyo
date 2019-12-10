@@ -24,9 +24,9 @@ public class LoginScene {
         layout.setPadding(new Insets(200));
 
         VBox inputPane = new VBox(10);
-        TextField usernameInput = new TextField("antto");
+        TextField usernameInput = new TextField("");
         usernameInput.setPromptText("username");
-        TextField passwordInput = new TextField("salasana");
+        TextField passwordInput = new TextField("");
         passwordInput.setPromptText("password");
         Text alert = new Text("");
         inputPane.getChildren().addAll(usernameInput, passwordInput, alert);

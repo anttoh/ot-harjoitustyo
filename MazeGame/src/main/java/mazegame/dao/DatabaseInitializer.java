@@ -27,7 +27,7 @@ public class DatabaseInitializer {
                     + ");").executeUpdate();
 
             conn.prepareStatement("CREATE TABLE IF NOT EXISTS Difficulty ("
-                    + " id BIGINT,"
+                    + " id IDENTITY,"
                     + " name VARCHAR(100),"
                     + " PRIMARY KEY(id)"
                     + ");").executeUpdate();

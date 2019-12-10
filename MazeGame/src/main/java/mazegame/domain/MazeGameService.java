@@ -152,6 +152,7 @@ public class MazeGameService {
             }
         }
         this.getLoggedInUsersAvereges();
+        this.difficulty = null;
     }
 
     /**
@@ -261,6 +262,16 @@ public class MazeGameService {
         return layoutForDrawing;
     }
 
+    /**
+     * Method returns the name of the current difficulty or "custom", if current
+     * difficulty is null.
+     *
+     * @return difficulty settings name or "custom", if it's null
+     */
+    public String getDifficultyName() {
+        return this.difficulty == null ? "custom" : this.difficulty.getName();
+    }
+
     private void initializeLayout() {
         this.layout = new Cell[this.width][this.height];
         for (int x = 0; x < this.width; x++) {
@@ -292,8 +303,6 @@ public class MazeGameService {
                 this.difficulty = new Difficulty("hard");
             } else if (this.width == 80) {
                 this.difficulty = new Difficulty("ultra hard");
-            } else {
-                this.difficulty = null;
             }
         }
     }
