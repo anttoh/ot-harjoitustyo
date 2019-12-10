@@ -17,4 +17,5 @@ päivä | aika | mitä tein
 6.12 | 5 | jatkoa eiliseen + tietokannan siistintää (turhien välitaulujen poistaminen) ja käyttäjän ratkaisuaikojen keskiarvojen laskeminen ja näyttäminen tapauskohtaisesti toteutus 
 8.12 | 2 | suunnittelua ja JavaDoc:in aloitus
 9.12 | 3 | JavaDoc:in jatkoa, rafaktorointia + refaktoroinnista syntyneen bugin etsiminen ja korjaaminen
-yht. | 49 |
+10.12 | 3 | testien luomista, refaktorointia jar:n luonti
+yht. | 52 |
