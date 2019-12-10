@@ -29,10 +29,10 @@ Sovellus on yksinkertainen sokkelo peli. Jokaisen pelin alussa sovellus luo satu
 ## Jatkokehitysideoita
 
 - (tehty) käyttäjä voi itse määrittää sokkelon koon antamalla toivotun leveyden ja korkeuden
-- valmiiksi määriteltyjä kategorioita, eri kokoisia ja pituisia sokkeloja (easy, medium, hard)
+- (tehty) valmiiksi määriteltyjä kategorioita, eri kokoisia ja pituisia sokkeloja (easy, medium, hard)
 - pelimoodi, jossa aika laskee alaspäin ja käyttäjän tulee selvittää sokkelo ennen ajajn loppumista
 - käyttäjä voi itse valita pelin pituuden (kuinka monta sokkeloa ratkoa peräkkäin ilman että ajastin pysähtyy)
 - käyttäjä voi itse valita pelilmoodin.
-- erillaisten tilastojen luonti esim. lista päivän tai kuukauden nopeimmista sokkeloiden ratkojista kategoria kohtaisesti
+- (tehty) erillaisten tilastojen luonti esim. lista päivän tai kuukauden nopeimmista sokkeloiden ratkojista kategoria kohtaisesti
 - tilastoja käyttäjän kehityksestä esim. vertailemalla eri ajanjaksojen ratkaisunopeuksien keskiarvoja
 - optimaalisen ratkaisun ajan laskeminen ja sen vertaaminen käyttäjän aikaan.
