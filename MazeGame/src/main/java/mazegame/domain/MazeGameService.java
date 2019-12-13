@@ -24,6 +24,7 @@ public class MazeGameService {
     private int height;
     private Difficulty difficulty;
     private boolean gameOngoing;
+    private boolean showPath;
     private double[] averegeSolveTimes;
 
     public MazeGameService() {
@@ -34,6 +35,7 @@ public class MazeGameService {
         this.gameDao = new GameDao();
         this.generator = new LayoutGenerator();
         this.gameOngoing = false;
+        this.showPath = false;
         this.averegeSolveTimes = null;
     }
 
@@ -106,6 +108,16 @@ public class MazeGameService {
      */
     public double[] getLoggedInUsersAveregeSolveTimes() {
         return this.averegeSolveTimes;
+    }
+
+    /**
+     * Method sets showPath to given boolean value. If it's set to true, then
+     * the user will be show the cells they have already visited.
+     * 
+     * @param bool users chosen boolean value
+     */
+    public void setShowPath(boolean bool) {
+        this.showPath = bool;
     }
 
     /**
@@ -193,6 +205,18 @@ public class MazeGameService {
      */
     public Cell mazeGoal() {
         return this.maze.getGoal();
+    }
+
+    /**
+     * Method returns true, if the cell given as parameter has been visited by
+     * the player.
+     *
+     * @param cell the cell in question
+     *
+     * @return true if the cell has been visited and false otherwise.
+     */
+    public boolean hasCellBeenVisited(Cell cell) {
+        return this.showPath && this.maze.visited(cell);
     }
 
     /**

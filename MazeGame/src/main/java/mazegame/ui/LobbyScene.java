@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -45,7 +46,9 @@ public class LobbyScene {
         Button medium = new Button("medium");
         Button hard = new Button("hard");
         Button ultrahard = new Button("ultra hard");
-        options.getChildren().addAll(veryeasy, easy, medium, hard, ultrahard);
+        CheckBox showPath = new CheckBox("highlight visited cells");
+        showPath.fire();
+        options.getChildren().addAll(veryeasy, easy, medium, hard, ultrahard, showPath);
 
         veryeasy.setOnAction(e -> {
             String size = "5";
@@ -96,6 +99,7 @@ public class LobbyScene {
                 }
                 widthInput.setText("");
                 heightInput.setText("");
+                ui.getService().setShowPath(showPath.isSelected());
                 ui.startGame(width, height);
             } catch (NumberFormatException exception) {
                 alert.setVisible(true);
