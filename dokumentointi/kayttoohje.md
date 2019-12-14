@@ -37,4 +37,18 @@ Nappeja klikkaamalla, syötekenttiin width ja height ilmestyy kyseisen vaikeusta
 
 ## Pelin pelaaminen
 
-Käyttäjän hahmoa (punainen ympyrä) ohjataan näppäimistön nuoli näppäimillä. Hahmo ei voi edetä mustien seinien läpi. Tavoitteena on ohjata hahmo maalin (vihreä neliö). Käyttäjä aloittaa aina vasemmasta yläkulmasta ja maali on aina oikeassa alakulmassa. 
+Sokkelo voisi aluksi näyttää tältä:
+
+<img src="./kuvat/game1.png">
+
+Käyttäjän hahmoa (punainen ympyrä) ohjataan näppäimistön nuoli näppäimillä. Hahmo ei voi edetä mustien seinien läpi.
+
+(vieraillut ruudut (siniset ympyrät) näyttävät hahmon kulkeman polun)
+
+<img src="./kuvat/game2.png">
+
+(käyttäjä klikkasi valintaruutua, jonka takia kuljettua polkua ei näytetä)
+
+<img src="./kuvat/game3.png">
+
+Tavoitteena on ohjata hahmo maalin (vihreä neliö). Käyttäjä aloittaa aina vasemmasta yläkulmasta ja maali on aina oikeassa alakulmassa. 
