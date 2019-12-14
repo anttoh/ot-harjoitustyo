@@ -27,7 +27,13 @@ Uuden käyttäjän luominen onnistuu kirjoittamalla vähintään kolme merkkiä 
 
 Onnistuneen kirjautumisen jälkeen siirrytään lobbyyn eli itse pelin "aulaan":
 
-Pelin vaikeustason voi valita valmiiksi määritellyistä vaihtoehdoista klikkaamalla nappia, jossa lukee toivottu vaikeustaso. Nappeja klikkaamalla, syötekenttiin width ja height ilmestyy kyseisen vaikeustason sokkelon leveys ja korkeus. Nämä arvot voi myös kirjoittaa kenttiin itse, jolloin pelin vaikeustasoksi määräytyy "custom", ellei itse kirjoitetut leveys ja korkeus satu vastaamaan jonkin valmiiksi määritellyn vaikeustason leveyttä ja korkeutta. Sovellus ilmoittaa, jos annettu leveys tai korkeus on epäkelpo esim. desimaaliluku, kirjain, liian suuri tai pieni luku. Nappeja klikkaamalla, niiden yläpuolelle ilmestyy teksti, joka ilmoittaa käyttäjän, juuri tämän vaikeustason, suoriutumis aikojen keskiarvon. "Custom" peleille ei lasteka keskiarvoa. Valintaruutua klikkaamalla käyttäjä voi valita, väritetäänkö sokkelon jo vieraillut solut. Ts. korostetaanko käyttäjän kulkema polku sokkelossa. Klikkaamalla nappia _start_ peli käynnistyy, jos leveys ja korkeus ovat sallittuja arvoja.
+<img src="./kuvat/lobby1.png">
+
+Pelin vaikeustason voi valita valmiiksi määritellyistä vaihtoehdoista klikkaamalla nappia, jossa lukee toivottu vaikeustaso.
+
+<img src="./kuvat/lobby2.png">
+
+Nappeja klikkaamalla, syötekenttiin width ja height ilmestyy kyseisen vaikeustason sokkelon leveys ja korkeus. Nämä arvot voi myös kirjoittaa kenttiin itse, jolloin pelin vaikeustasoksi määräytyy "custom", ellei itse kirjoitetut leveys ja korkeus satu vastaamaan jonkin valmiiksi määritellyn vaikeustason leveyttä ja korkeutta. Sovellus ilmoittaa, jos annettu leveys tai korkeus on epäkelpo esim. desimaaliluku, kirjain, liian suuri tai pieni luku. Nappeja klikkaamalla, niiden yläpuolelle ilmestyy teksti, joka ilmoittaa käyttäjän, juuri tämän vaikeustason, suoriutumis aikojen keskiarvon. "Custom" peleille ei lasteka keskiarvoa. Valintaruutua klikkaamalla käyttäjä voi valita, korostetaanko käyttäjän kulkema polku sokkelossa. Klikkaamalla nappia _start_ peli käynnistyy, jos leveys ja korkeus ovat sallittuja arvoja.
 
 ## Pelin pelaaminen
 
