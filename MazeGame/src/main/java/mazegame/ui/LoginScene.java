@@ -25,8 +25,10 @@ public class LoginScene {
 
         VBox inputPane = new VBox(10);
         TextField usernameInput = new TextField("");
+        usernameInput.setFocusTraversable(false);
         usernameInput.setPromptText("username");
         TextField passwordInput = new TextField("");
+        passwordInput.setFocusTraversable(false);
         passwordInput.setPromptText("password");
         Text alert = new Text("");
         inputPane.getChildren().addAll(usernameInput, passwordInput, alert);
@@ -58,7 +60,7 @@ public class LoginScene {
             String password = passwordInput.getText();
 
             if (!ui.login(username, password)) {
-                alert.setText("Username and/or password are/is incorrect");
+                alert.setText("Username or password is incorrect");
             } else {
                 alert.setText("Login in ...");
                 usernameInput.setText("");

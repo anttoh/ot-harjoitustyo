@@ -27,15 +27,15 @@ public class LobbyScene {
         layout.setPadding(new Insets(200));
 
         VBox vbox = new VBox(10);
-        TextField widthInput = new TextField("20");
+        TextField widthInput = new TextField();
         widthInput.setPromptText("width (2 - 90)");
-        TextField heightInput = new TextField("20");
+        TextField heightInput = new TextField();
         heightInput.setPromptText("height (2 - 90)");
         Text alert = new Text("Width and height must be natural numbers "
                 + "between 2 and 90");
         alert.setVisible(false);
         Text welcome = new Text("Logged in as " + this.ui.getService().getLoggedInUser().getUsername());
-        Text averege = new Text("Your averege solve time in medium difficulty is " + this.ui.getService().getLoggedInUsersAveregeSolveTimes()[3] + " seconds");
+        Text averege = new Text();
 
         Button logout = new Button("logout");
         Button play = new Button("start");
