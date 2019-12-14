@@ -19,4 +19,5 @@ päivä | aika | mitä tein
 9.12 | 3 | JavaDoc:in jatkoa, rafaktorointia + refaktoroinnista syntyneen bugin etsiminen ja korjaaminen
 10.12 | 3 | testien luomista, refaktorointia jar:n luonti
 13.12 | 2 | pieni modifikaatio + suunnittelua
-yht. | 54 |
+14.12 | 2 | loppupalautuksen ohjeiden läpikäynti ja käyttöohjeen luominen
+yht. | 56 |
