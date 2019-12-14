@@ -14,7 +14,11 @@ java -jar mazegame.jar
 
 Sovellus käynnistyy kirjautumis/rekistöröitymisnäkymään:
 
+<img src="./kuvat/login1.png">
+
 Kirjautuminen onnistuu kirjoittamalla olemassaoleva käyttäjätunnus ja sen oikea salasana syötekenttiin ja painamalla _login_.
+
+<img src="./kuvat/login2.png">
 
 Uuden käyttäjän luominen onnistuu kirjoittamalla vähintään kolme merkkiä pitkän käyttäjätunnuksen, joka ei ole jo olemassa, sekä sille vähintään viiden merkin pituinen salasana, ja painamalla _register_. Sovellus ilmoittaa, jos käyttäjä tunnus on jo käytössä.
 
