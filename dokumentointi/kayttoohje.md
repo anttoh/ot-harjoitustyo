@@ -47,8 +47,8 @@ Käyttäjän hahmoa (punainen ympyrä) ohjataan näppäimistön nuoli näppäimi
 
 <img src="./kuvat/game2.png">
 
-(käyttäjä klikkasi valintaruutua, jonka takia kuljettua polkua ei näytetä)
+(kuljettua polkua ei näytetä, sillä käyttäjä klikkasi valintaruutua)
 
 <img src="./kuvat/game3.png">
 
-Tavoitteena on ohjata hahmo maalin (vihreä neliö). Käyttäjä aloittaa aina vasemmasta yläkulmasta ja maali on aina oikeassa alakulmassa. 
+Tavoitteena on ohjata hahmo maalin (vihreä neliö). Käyttäjä aloittaa aina vasemmasta yläkulmasta ja maali on aina oikeassa alakulmassa. Hahmon siirtyessä maaliruutun ajastin pysähtyy ja käyttäjä siirtyy edelliseen näkymään (lobby). Käyttäjän sokkelon ratkaisu aika lasketaan heti mukaan tämän keskiarvoon tällä vaikeustasolla, jos vaikeustaso oli jokin valmiiksi määritellyistä.
