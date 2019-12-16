@@ -20,4 +20,5 @@ päivä | aika | mitä tein
 10.12 | 3 | testien luomista, refaktorointia jar:n luonti
 13.12 | 2 | pieni modifikaatio + suunnittelua
 14.12 | 2 | loppupalautuksen ohjeiden läpikäynti ja käyttöohjeen luominen
-yht. | 56 |
+16.12 | 1 | arkkitehtuurikuvauksen muokkaamista
+yht. | 57 |
