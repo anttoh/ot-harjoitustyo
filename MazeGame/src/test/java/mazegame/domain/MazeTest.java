@@ -10,8 +10,6 @@ import static org.junit.Assert.*;
 public class MazeTest {
 
     Maze maze;
-    Cell[][] layout;
-    LayoutGenerator generator;
 
     public MazeTest() {
     }
@@ -26,15 +24,7 @@ public class MazeTest {
 
     @Before
     public void setUp() {
-        layout = new Cell[2][2];
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 2; j++) {
-                layout[i][j] = new Cell(i, j);
-            }
-        }
-        generator = new LayoutGenerator();
-        generator.generateMazeLayout(layout);
-        maze = new Maze(layout);
+        maze = new Maze(2, 2);
     }
 
     @After
@@ -43,24 +33,18 @@ public class MazeTest {
 
     @Test
     public void currentCellIsRightAtStart() {
-        assertEquals(layout[0][0], maze.getCurrentCell());
+        assertEquals(maze.getLayout()[0][0], maze.getCurrentCell());
 
     }
 
     @Test
     public void goalIsCorrectCell() {
-        assertEquals(layout[1][1], maze.getGoal());
+        assertEquals(maze.getLayout()[1][1], maze.getGoal());
 
     }
 
     @Test
-    public void reachedGoalReturnsFalseWhenCurCellIsNotEqualsToGoal() {
-        assertEquals(false, maze.reachedGoal());
-
-    }
-
-    @Test
-    public void reachedGoalReturnsTrueWhenCurCellEqualsGoal() {
+    public void curCellCanBeEqualToGoal() {
         /*
         There are only two possible paths from top left corner to bottom right
         corner in 2 by 2 grid: either you go right then down or down then right
@@ -70,7 +54,7 @@ public class MazeTest {
 
         maze.moveRight();
         maze.moveDown();
-        if (maze.reachedGoal()) {
+        if (maze.getCurrentCell() == maze.getGoal()) {
             visitedGoal = true;
         }
 
@@ -80,7 +64,7 @@ public class MazeTest {
 
         maze.moveDown();
         maze.moveRight();
-        if (maze.reachedGoal()) {
+        if (maze.getCurrentCell() == maze.getGoal()) {
             visitedGoal = true;
         }
 

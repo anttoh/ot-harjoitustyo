@@ -49,6 +49,7 @@ public class UserDao {
         return fullUser;
     }
 
+    // note: this method is only used in tests to delete test users. 
     public void delete(User user) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:h2:./mazegame", "a", "");
 
