@@ -134,24 +134,21 @@ public class GameScene {
             }
         }.start();
 
-        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                switch (event.getCode()) {
-                    case UP:
-                        service.goUp();
-                        break;
-                    case DOWN:
-                        service.goDown();
-                        break;
-                    case LEFT:
-                        service.goLeft();
-                        break;
-                    case RIGHT:
-                        service.goRight();
-                        break;
+        scene.setOnKeyReleased((KeyEvent event) -> {
+            switch (event.getCode()) {
+                case UP:
+                    service.goUp();
+                    break;
+                case DOWN:
+                    service.goDown();
+                    break;
+                case LEFT:
+                    service.goLeft();
+                    break;
+                case RIGHT:
+                    service.goRight();
+                    break;
 
-                }
             }
         });
 

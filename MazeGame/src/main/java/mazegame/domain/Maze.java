@@ -2,7 +2,9 @@ package mazegame.domain;
 
 /**
  * Class responsible for containing the mazes state (layout, location of the
- * users character and the goal). It also offers methods to move in the maze.
+ * users character and the goal and visited cells). It also offers methods to
+ * move in the maze. Class calls LayoutGenerators method generateMazeLayout in
+ * it's constructor.
  */
 public class Maze {
 
@@ -11,12 +13,21 @@ public class Maze {
     private Cell curCell;
     private Cell goal;
 
-    public Maze(Cell[][] layout) {
-        this.layout = layout;
-        this.visitedCells = new boolean[this.layout.length][this.layout[0].length];
+    public Maze(int width, int height) {
+        this.initializeLayout(width, height); // sets this.layout
+        this.visitedCells = new boolean[width][height];
         this.curCell = this.layout[0][0];
-        this.goal = this.layout[this.layout.length - 1][this.layout[0].length - 1];
+        this.goal = this.layout[width - 1][height - 1];
+        new LayoutGenerator().generateMazeLayout(this.layout);
+    }
 
+    /**
+     * Method gets the layout of the maze.
+     *
+     * @return Cell[][] layout
+     */
+    public Cell[][] getLayout() {
+        return this.layout;
     }
 
     /**
@@ -47,16 +58,6 @@ public class Maze {
      */
     public boolean visited(Cell cell) {
         return this.visitedCells[cell.getX()][cell.getY()];
-    }
-
-    /**
-     * Method tells whether or not the goal of the maze has been reached
-     *
-     * @return true if the cell, which the user is on, is the same cell, that
-     * the goal is, and false otherwise
-     */
-    public boolean reachedGoal() {
-        return this.goal == this.curCell;
     }
 
     /**
@@ -99,4 +100,12 @@ public class Maze {
         this.visitedCells[this.curCell.getX()][this.curCell.getY()] = true;
     }
 
+    private void initializeLayout(int width, int height) {
+        this.layout = new Cell[width][height];
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                this.layout[x][y] = new Cell(x, y);
+            }
+        }
+    }
 }

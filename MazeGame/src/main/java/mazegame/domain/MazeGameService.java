@@ -13,30 +13,20 @@ import mazegame.dao.UserDao;
  */
 public class MazeGameService {
 
-    private UserDao userDao;
-    private GameDao gameDao;
-    private DifficultyDao difficultyDao;
+    private final UserDao userDao;
+    private final GameDao gameDao;
+    private final DifficultyDao difficultyDao;
     private User loggedIn;
-    private LayoutGenerator generator;
-    private Cell[][] layout;
     private Maze maze;
-    private int width;
-    private int height;
     private Difficulty difficulty;
     private boolean gameOngoing;
     private boolean showPath;
     private double[] averegeSolveTimes;
 
     public MazeGameService() {
-        this.difficulty = null;
-        this.loggedIn = null;
         this.userDao = new UserDao();
-        this.difficultyDao = new DifficultyDao();
         this.gameDao = new GameDao();
-        this.generator = new LayoutGenerator();
-        this.gameOngoing = false;
-        this.showPath = false;
-        this.averegeSolveTimes = null;
+        this.difficultyDao = new DifficultyDao();
     }
 
     /**
@@ -113,7 +103,7 @@ public class MazeGameService {
     /**
      * Method sets showPath to given boolean value. If it's set to true, then
      * the user will be show the cells they have already visited.
-     * 
+     *
      * @param bool users chosen boolean value
      */
     public void setShowPath(boolean bool) {
@@ -128,13 +118,9 @@ public class MazeGameService {
      * @param height height of the maze
      */
     public void startGame(int width, int height) {
-        this.width = width;
-        this.height = height;
         this.gameOngoing = true;
-        this.initializeLayout();
-        this.generator.generateMazeLayout(this.layout);
-        this.maze = new Maze(this.layout);
-        this.setDifficulty();
+        this.maze = new Maze(width, height);
+        this.setDifficulty(width, height);
     }
 
     /**
@@ -185,7 +171,7 @@ public class MazeGameService {
      * @return Cell in the given coordinates
      */
     public Cell getCellAtPos(int x, int y) {
-        return this.layout[x][y];
+        return this.maze.getLayout()[x][y];
     }
 
     /**
@@ -209,11 +195,13 @@ public class MazeGameService {
 
     /**
      * Method returns true, if the cell given as parameter has been visited by
-     * the player.
+     * the player and showPath is true (player chose to have visited cells be
+     * highlighted).
      *
      * @param cell the cell in question
      *
-     * @return true if the cell has been visited and false otherwise.
+     * @return true if the cell has been visited and showPath is true, and false
+     * otherwise.
      */
     public boolean hasCellBeenVisited(Cell cell) {
         return this.showPath && this.maze.visited(cell);
@@ -265,6 +253,8 @@ public class MazeGameService {
      * maze
      */
     public CellTypeForDrawing[][] getLayoutForDrawing() {
+        int width = this.maze.getLayout().length;
+        int height = this.maze.getLayout()[0].length;
         CellTypeForDrawing[][] layoutForDrawing = new CellTypeForDrawing[width][height];
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
@@ -296,15 +286,6 @@ public class MazeGameService {
         return this.difficulty == null ? "custom" : this.difficulty.getName();
     }
 
-    private void initializeLayout() {
-        this.layout = new Cell[this.width][this.height];
-        for (int x = 0; x < this.width; x++) {
-            for (int y = 0; y < this.height; y++) {
-                this.layout[x][y] = new Cell(x, y);
-            }
-        }
-    }
-
     private void getLoggedInUsersAvereges() {
         if (this.loggedIn != null) {
             try {
@@ -315,18 +296,26 @@ public class MazeGameService {
         }
     }
 
-    private void setDifficulty() {
-        if (this.width == this.height) {
-            if (this.width == 5) {
-                this.difficulty = new Difficulty("very easy");
-            } else if (this.width == 10) {
-                this.difficulty = new Difficulty("easy");
-            } else if (this.width == 20) {
-                this.difficulty = new Difficulty("medium");
-            } else if (this.width == 40) {
-                this.difficulty = new Difficulty("hard");
-            } else if (this.width == 80) {
-                this.difficulty = new Difficulty("ultra hard");
+    private void setDifficulty(int width, int height) {
+        if (width == height) {
+            switch (width) {
+                case 5:
+                    this.difficulty = new Difficulty("very easy");
+                    break;
+                case 10:
+                    this.difficulty = new Difficulty("easy");
+                    break;
+                case 20:
+                    this.difficulty = new Difficulty("medium");
+                    break;
+                case 40:
+                    this.difficulty = new Difficulty("hard");
+                    break;
+                case 80:
+                    this.difficulty = new Difficulty("ultra hard");
+                    break;
+                default:
+                    break;
             }
         }
     }
