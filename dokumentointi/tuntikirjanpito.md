@@ -21,4 +21,5 @@ päivä | aika | mitä tein
 13.12 | 2 | pieni modifikaatio + suunnittelua
 14.12 | 2 | loppupalautuksen ohjeiden läpikäynti ja käyttöohjeen luominen
 16.12 | 1 | arkkitehtuurikuvauksen muokkaamista
-yht. | 57 |
+16.12 | 4 | arkkitehtuurikuvauksen muokkaamista, refaktorointia ja testien luomista ja korjaamista.
+yht. | 61 |
