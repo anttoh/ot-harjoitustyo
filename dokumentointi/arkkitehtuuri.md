@@ -4,7 +4,9 @@ Ohjelman pakkausrakenne on seuraava:
 
 <img src="./kuvat/luokkakaavio.png">
 
-Pakkaus _ui_ sisältää JavaFX:llä toteutetun käyttöliittymän _domain_ sovelluslogiikan ja _dao_ tietojen pysyväistallennuksesta vastaavan koodin, sekä tietokannan alustavan koodin.
+(HUOM. Refaktoroinnin myötä kuvan MazeGenerator on nykyään LayaoutGenerator ja Maze:n ja LayoutGeneratorin välisen viivan molemmissa päissä kuuluisi olla nro. 1. Kuvan nuoli MazeGameUI:sta MazeGameService:n on hieman liian lyhyt, mutta se siis osoittaa MazeGameService:n, ei koko mazegame.domain pakkausta)
+
+Pakkaus _mazegame.ui_ sisältää JavaFX:llä toteutetun käyttöliittymän _mazegame.domain_ sovelluslogiikan ja _mazegame.dao_ tietojen pysyväistallennuksesta vastaavan koodin, sekä tietokannan alustavan koodin.
 
 ## Käyttöliittmymä
 
