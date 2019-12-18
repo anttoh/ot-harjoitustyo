@@ -168,8 +168,8 @@ public class MazeGameService {
         if (this.goalReached() && this.difficulty != null) {
             try {
                 this.difficulty = this.difficultyDao.read(this.difficulty);
-                Result game = new Result(this.loggedIn, this.difficulty, time);
-                this.resultDao.create(game);
+                Result result = new Result(this.loggedIn, this.difficulty, time);
+                this.resultDao.create(result);
             } catch (SQLException ex) {
                 Logger.getLogger(MazeGameService.class.getName()).log(Level.SEVERE, null, ex);
             }

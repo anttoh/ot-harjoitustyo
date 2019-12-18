@@ -144,7 +144,7 @@ public class MazeGameServiceTest {
     }
 
     @Test
-    public void exitGameDoesNotSaveResultIfReachedGoalIsFalseOrDifficultyIsCustom() throws SQLException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+    public void exitGameDoesNotSaveResultIfReachedGoalIsFalseOrDifficultyIsCustom() throws SQLException {
         service.register(username, password);
         service.login(username, password);
         service.startGame(5, 5);
