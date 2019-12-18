@@ -9,25 +9,10 @@ import mazegame.domain.Difficulty;
 
 public class DifficultyDao {
 
-    public void create(Difficulty difficulty) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:h2:./mazegame", "a", "");
-        PreparedStatement stmt = conn.prepareStatement("INSERT INTO Difficulty"
-                + " (name)"
-                + " VALUES (?);");
-
-        stmt.setString(1, difficulty.getName());
-
-        stmt.executeUpdate();
-        stmt.close();
-        conn.close();
-    }
-
     public Difficulty read(Difficulty difficulty) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:h2:./mazegame", "a", "");
-
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Difficulty"
                 + " WHERE name = ?;");
-
         stmt.setString(1, difficulty.getName());
         ResultSet rs = stmt.executeQuery();
 
@@ -38,6 +23,7 @@ public class DifficultyDao {
                     rs.getString("name"));
 
         }
+
         stmt.close();
         rs.close();
         conn.close();

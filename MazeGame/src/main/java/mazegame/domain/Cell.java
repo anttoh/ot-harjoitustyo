@@ -63,5 +63,4 @@ public class Cell {
     public void setRight(Cell right) {
         this.right = right;
     }
-
 }

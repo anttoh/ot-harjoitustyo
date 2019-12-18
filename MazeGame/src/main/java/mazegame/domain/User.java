@@ -58,5 +58,4 @@ public class User {
         hash = 17 * hash + Objects.hashCode(this.password);
         return hash;
     }
-
 }

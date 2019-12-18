@@ -40,29 +40,13 @@ public class MazeGameServiceTest {
 
     @After
     public void tearDown() throws SQLException {
-        service.register(username, password); // new user is created only if it wasn't created in the test case. This is done to avoi exeption, but it doesn't alter the results of the tests cases.
+        service.register(username, password); // new user is created only if it wasn't created in the test case. This is done to avoid exeption, but it doesn't alter the results of the tests cases.
         userDao.delete(userDao.read(testUser));
     }
 
     @Test
     public void gameEndedReturnsTrueIfGameIsNotOngoing() {
         assertEquals(true, service.gameEnded());
-    }
-
-    @Test
-    public void startGameSetsGameToOngoing() {
-        service.startGame(2, 2);
-        assertEquals(false, service.gameEnded());
-
-    }
-
-    @Test
-    public void startGameCreatesCorrectSizeLayout() {
-        service.startGame(10, 5);
-        CellTypeForDrawing[][] layout = service.getLayoutForDrawing();
-        assertEquals(10, layout.length);
-        assertEquals(5, layout[0].length);
-
     }
 
     @Test
@@ -141,5 +125,32 @@ public class MazeGameServiceTest {
         String wrongUsername = "nonExistingUsername";
         assertEquals(false, service.login(wrongUsername, password));
         assertEquals(true, service.getLoggedInUser() == null);
+    }
+
+    @Test
+    public void startGameSetsGameToOngoing() {
+        service.startGame(2, 2);
+        assertEquals(false, service.gameEnded());
+
+    }
+
+    @Test
+    public void startGameCreatesCorrectSizeLayout() {
+        service.startGame(10, 5);
+        CellTypeForDrawing[][] layout = service.getLayoutForDrawing();
+        assertEquals(10, layout.length);
+        assertEquals(5, layout[0].length);
+
+    }
+
+    @Test
+    public void exitGameDoesNotSaveResultIfReachedGoalIsFalseOrDifficultyIsCustom() throws SQLException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+        service.register(username, password);
+        service.login(username, password);
+        service.startGame(5, 5);
+        service.endGame();
+        service.exitGame(10);
+
+        assertEquals(true, service.getLoggedInUsersAveregeSolveTimes()[0] == 0);
     }
 }

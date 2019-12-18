@@ -12,10 +12,10 @@ public class DatabaseInitializer {
     public static void initDatabaseIfNotExisting() {
         try (Connection conn = DriverManager.getConnection("jdbc:h2:./mazegame;mode=MySQL", "a", "")) {
 
-            // uncomment these statements and run this file, if you want to reset the db
+            // uncomment these statements if you want to reset the db
             // then comment or delete them.
             /*
-            conn.prepareStatement("DROP TABLE Game IF EXISTS;").executeUpdate();
+            conn.prepareStatement("DROP TABLE Result IF EXISTS;").executeUpdate();
             conn.prepareStatement("DROP TABLE User IF EXISTS;").executeUpdate();
             conn.prepareStatement("DROP TABLE Difficulty IF EXISTS;").executeUpdate();
              */
@@ -32,7 +32,7 @@ public class DatabaseInitializer {
                     + " PRIMARY KEY(id)"
                     + ");").executeUpdate();
 
-            conn.prepareStatement("CREATE TABLE IF NOT EXISTS Game ("
+            conn.prepareStatement("CREATE TABLE IF NOT EXISTS Result ("
                     + " id IDENTITY,"
                     + " user_id BIGINT,"
                     + " difficulty_id BIGINT,"
@@ -48,32 +48,36 @@ public class DatabaseInitializer {
             conn.prepareStatement("CREATE INDEX IF NOT EXISTS difficulty_idx"
                     + " ON Difficulty (id);").executeUpdate();
 
-            conn.prepareStatement("CREATE INDEX IF NOT EXISTS game_idx"
-                    + " ON Game (id);").executeUpdate();
+            conn.prepareStatement("CREATE INDEX IF NOT EXISTS result_idx"
+                    + " ON Result (id);").executeUpdate();
 
-            conn.prepareStatement("CREATE INDEX IF NOT EXISTS game_user_idx"
-                    + " ON Game (user_id);").executeUpdate();
+            conn.prepareStatement("CREATE INDEX IF NOT EXISTS result_user_idx"
+                    + " ON Result (user_id);").executeUpdate();
 
-            conn.prepareStatement("CREATE INDEX IF NOT EXISTS game_difficulty_idx"
-                    + " ON Game (difficulty_id);").executeUpdate();
+            conn.prepareStatement("CREATE INDEX IF NOT EXISTS result_difficulty_idx"
+                    + " ON Result (difficulty_id);").executeUpdate();
 
             // predefined game difficulties
             conn.prepareStatement("INSERT INTO Difficulty"
                     + " (id, name)"
                     + " VALUES (1, 'very easy')"
                     + " ON DUPLICATE KEY UPDATE id = id;").executeUpdate();
+
             conn.prepareStatement("INSERT INTO Difficulty"
                     + " (id, name)"
                     + " VALUES (2, 'easy')"
                     + " ON DUPLICATE KEY UPDATE id = id;").executeUpdate();
+
             conn.prepareStatement("INSERT INTO Difficulty"
                     + " (id, name)"
                     + " VALUES (3, 'medium')"
                     + " ON DUPLICATE KEY UPDATE id = id;").executeUpdate();
+
             conn.prepareStatement("INSERT INTO Difficulty"
                     + " (id, name)"
                     + " VALUES (4, 'hard')"
                     + " ON DUPLICATE KEY UPDATE id = id;").executeUpdate();
+
             conn.prepareStatement("INSERT INTO Difficulty"
                     + " (id, name)"
                     + " VALUES (5, 'ultra hard')"

@@ -18,7 +18,6 @@ public class LobbyScene {
 
     public LobbyScene(MazeGameUi ui) {
         this.ui = ui;
-
     }
 
     public Scene createAndGet() {
@@ -35,7 +34,12 @@ public class LobbyScene {
                 + "between 2 and 90");
         alert.setVisible(false);
         Text welcome = new Text("Logged in as " + this.ui.getService().getLoggedInUser().getUsername());
+
+        VBox statistics = new VBox();
         Text averege = new Text();
+        Text best = new Text();
+        Text worst = new Text();
+        statistics.getChildren().addAll(averege, best, worst);
 
         Button logout = new Button("logout");
         Button play = new Button("start");
@@ -55,6 +59,8 @@ public class LobbyScene {
             widthInput.setText(size);
             heightInput.setText(size);
             averege.setText("Your averege solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersAveregeSolveTimes()[1] + " seconds");
+            best.setText("Your best solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersBestSolveTimes()[1] + " seconds");
+            worst.setText("Your worst solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersWorstSolveTimes()[1] + " seconds");
 
         });
 
@@ -62,32 +68,36 @@ public class LobbyScene {
             String size = "10";
             widthInput.setText(size);
             heightInput.setText(size);
-            averege.setText("Your averege solve time in easy difficulty is " + this.ui.getService().getLoggedInUsersAveregeSolveTimes()[2] + " seconds");
-
+            averege.setText("Your averege solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersAveregeSolveTimes()[2] + " seconds");
+            best.setText("Your best solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersBestSolveTimes()[2] + " seconds");
+            worst.setText("Your worst solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersWorstSolveTimes()[2] + " seconds");
         });
 
         medium.setOnAction(e -> {
             String size = "20";
             widthInput.setText(size);
             heightInput.setText(size);
-            averege.setText("Your averege solve time in medium difficulty is " + this.ui.getService().getLoggedInUsersAveregeSolveTimes()[3] + " seconds");
-
+            averege.setText("Your averege solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersAveregeSolveTimes()[3] + " seconds");
+            best.setText("Your best solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersBestSolveTimes()[3] + " seconds");
+            worst.setText("Your worst solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersWorstSolveTimes()[3] + " seconds");
         });
 
         hard.setOnAction(e -> {
             String size = "40";
             widthInput.setText(size);
             heightInput.setText(size);
-            averege.setText("Your averege solve time in hard difficulty is " + this.ui.getService().getLoggedInUsersAveregeSolveTimes()[4] + " seconds");
-
+            averege.setText("Your averege solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersAveregeSolveTimes()[4] + " seconds");
+            best.setText("Your best solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersBestSolveTimes()[4] + " seconds");
+            worst.setText("Your worst solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersWorstSolveTimes()[4] + " seconds");
         });
 
         ultrahard.setOnAction(e -> {
             String size = "80";
             widthInput.setText(size);
             heightInput.setText(size);
-            averege.setText("Your averege solve time in ultra hard difficulty is " + this.ui.getService().getLoggedInUsersAveregeSolveTimes()[5] + " seconds");
-
+            averege.setText("Your averege solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersAveregeSolveTimes()[5] + " seconds");
+            best.setText("Your best solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersBestSolveTimes()[5] + " seconds");
+            worst.setText("Your worst solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersWorstSolveTimes()[5] + " seconds");
         });
 
         play.setOnAction(e -> {
@@ -115,7 +125,7 @@ public class LobbyScene {
 
         VBox bottom = new VBox(10);
         bottom.getChildren().addAll(welcome, logout);
-        layout.setTop(averege);
+        layout.setTop(statistics);
         layout.setBottom(bottom);
         layout.setCenter(vbox);
 

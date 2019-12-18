@@ -2,7 +2,6 @@ package mazegame.ui;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import javafx.animation.AnimationTimer;
-import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -17,16 +16,13 @@ import javafx.scene.text.Text;
 import javafx.stage.Screen;
 
 import mazegame.domain.CellTypeForDrawing;
-import mazegame.domain.MazeGameService;
 
 public class GameScene {
 
     private MazeGameUi ui;
-    private MazeGameService service;
 
     public GameScene(MazeGameUi ui) {
         this.ui = ui;
-        this.service = ui.getService();
     }
 
     public Scene createAndGet() {
@@ -53,7 +49,7 @@ public class GameScene {
 
         Button leave = new Button("exit game");
         leave.setOnAction(e -> {
-            this.service.endGame();
+            this.ui.getService().endGame();
         });
 
         BorderPane layout = new BorderPane();
@@ -65,7 +61,7 @@ public class GameScene {
 
         Scene scene = new Scene(layout, screenBounds.getWidth(), screenBounds.getHeight());
 
-        CellTypeForDrawing[][] layoutForDrawing = this.service.getLayoutForDrawing();
+        CellTypeForDrawing[][] layoutForDrawing = this.ui.getService().getLayoutForDrawing();
         int width = layoutForDrawing.length;
         int height = layoutForDrawing[0].length;
         int relativeSize = size / Math.max(width, height);
@@ -77,7 +73,7 @@ public class GameScene {
 
             @Override
             public void handle(long curMoment) {
-                if (service.gameEnded()) {
+                if (ui.getService().gameEnded()) {
                     stop();
                     ui.exitGame(time.get());
                 }
@@ -108,23 +104,23 @@ public class GameScene {
                                     break;
                             }
 
-                            if (service.hasCellBeenVisited(service.getCellAtPos(x, y))) {
+                            if (ui.getService().hasCellBeenVisited(ui.getService().getCellAtPos(x, y))) {
                                 marker.setFill(Color.AQUA);
                                 marker.fillOval((x * relativeSize), (y * relativeSize), relativeSize / wallSize, relativeSize / wallSize);
                             }
 
-                            if (service.mazeGoal() == service.getCellAtPos(x, y)) {
+                            if (ui.getService().mazeGoal() == ui.getService().getCellAtPos(x, y)) {
                                 marker.setFill(Color.GREEN);
                                 marker.fillRect((x * relativeSize), (y * relativeSize), relativeSize / wallSize, relativeSize / wallSize);
                             }
 
-                            if (service.mazeCurrentCell() == service.getCellAtPos(x, y)) {
+                            if (ui.getService().mazeCurrentCell() == ui.getService().getCellAtPos(x, y)) {
                                 marker.setFill(Color.RED);
                                 marker.fillOval((x * relativeSize), (y * relativeSize), relativeSize / wallSize, relativeSize / wallSize);
                             }
 
-                            if (service.goalReached()) {
-                                service.endGame();
+                            if (ui.getService().goalReached()) {
+                                ui.getService().endGame();
                             }
                         }
                     }
@@ -137,16 +133,16 @@ public class GameScene {
         scene.setOnKeyReleased((KeyEvent event) -> {
             switch (event.getCode()) {
                 case UP:
-                    service.goUp();
+                    this.ui.getService().goUp();
                     break;
                 case DOWN:
-                    service.goDown();
+                    this.ui.getService().goDown();
                     break;
                 case LEFT:
-                    service.goLeft();
+                    this.ui.getService().goLeft();
                     break;
                 case RIGHT:
-                    service.goRight();
+                    this.ui.getService().goRight();
                     break;
 
             }

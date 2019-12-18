@@ -3,8 +3,9 @@ package mazegame.domain;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import mazegame.dao.DifficultyDao;
-import mazegame.dao.GameDao;
+import mazegame.dao.ResultDao;
 import mazegame.dao.UserDao;
 
 /**
@@ -14,18 +15,18 @@ import mazegame.dao.UserDao;
 public class MazeGameService {
 
     private final UserDao userDao;
-    private final GameDao gameDao;
+    private final ResultDao resultDao;
     private final DifficultyDao difficultyDao;
     private User loggedIn;
     private Maze maze;
     private Difficulty difficulty;
     private boolean gameOngoing;
     private boolean showPath;
-    private double[] averegeSolveTimes;
+    private double[][] solveTimes;
 
     public MazeGameService() {
         this.userDao = new UserDao();
-        this.gameDao = new GameDao();
+        this.resultDao = new ResultDao();
         this.difficultyDao = new DifficultyDao();
     }
 
@@ -76,7 +77,7 @@ public class MazeGameService {
             Logger.getLogger(MazeGameService.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.loggedIn = user;
-        this.getLoggedInUsersAvereges();
+        this.getLoggedInUsersAveregeBestAndWorstTimes();
         return user != null;
     }
 
@@ -97,7 +98,31 @@ public class MazeGameService {
      * difficulty. 1 = very easy and 5 = ultra hard
      */
     public double[] getLoggedInUsersAveregeSolveTimes() {
-        return this.averegeSolveTimes;
+        return this.solveTimes[1];
+    }
+
+    /**
+     * Method returns an array that contains best times it took the user to
+     * solve mazes of certain difficulty. Array contains best solve time for
+     * each of the predefined difficulty settings.
+     *
+     * @return double[] that contains the best solve times for each difficulty.
+     * 1 = very easy and 5 = ultra hard
+     */
+    public double[] getLoggedInUsersBestSolveTimes() {
+        return this.solveTimes[2];
+    }
+
+    /**
+     * Method returns an array that contains worst times it took the user to
+     * solve mazes of certain difficulty. Array contains worst solve time for
+     * each of the predefined difficulty settings.
+     *
+     * @return double[] that contains the worst solve times for each difficulty.
+     * 1 = very easy and 5 = ultra hard
+     */
+    public double[] getLoggedInUsersWorstSolveTimes() {
+        return this.solveTimes[3];
     }
 
     /**
@@ -143,13 +168,13 @@ public class MazeGameService {
         if (this.goalReached() && this.difficulty != null) {
             try {
                 this.difficulty = this.difficultyDao.read(this.difficulty);
-                Game game = new Game(this.loggedIn, this.difficulty, time);
-                this.gameDao.create(game);
+                Result game = new Result(this.loggedIn, this.difficulty, time);
+                this.resultDao.create(game);
             } catch (SQLException ex) {
                 Logger.getLogger(MazeGameService.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        this.getLoggedInUsersAvereges();
+        this.getLoggedInUsersAveregeBestAndWorstTimes();
         this.difficulty = null;
     }
 
@@ -194,6 +219,16 @@ public class MazeGameService {
     }
 
     /**
+     * Method tells whether or not the goal of the maze has been reached
+     *
+     * @return true if the users character is on the goal Cell and false
+     * otherwise
+     */
+    public boolean goalReached() {
+        return this.mazeCurrentCell() == this.mazeGoal();
+    }
+
+    /**
      * Method returns true, if the cell given as parameter has been visited by
      * the player and showPath is true (player chose to have visited cells be
      * highlighted).
@@ -205,16 +240,6 @@ public class MazeGameService {
      */
     public boolean hasCellBeenVisited(Cell cell) {
         return this.showPath && this.maze.visited(cell);
-    }
-
-    /**
-     * Method tells whether or not the goal of the maze has been reached
-     *
-     * @return true if the users character is on the goal Cell and false
-     * otherwise
-     */
-    public boolean goalReached() {
-        return this.mazeCurrentCell() == this.mazeGoal();
     }
 
     /**
@@ -253,11 +278,9 @@ public class MazeGameService {
      * maze
      */
     public CellTypeForDrawing[][] getLayoutForDrawing() {
-        int width = this.maze.getLayout().length;
-        int height = this.maze.getLayout()[0].length;
-        CellTypeForDrawing[][] layoutForDrawing = new CellTypeForDrawing[width][height];
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
+        CellTypeForDrawing[][] layoutForDrawing = new CellTypeForDrawing[this.maze.getLayout().length][this.maze.getLayout()[0].length];
+        for (int i = 0; i < this.maze.getLayout().length; i++) {
+            for (int j = 0; j < this.maze.getLayout()[0].length; j++) {
                 Cell curCell = this.getCellAtPos(i, j);
                 if (curCell.getRight() == curCell.getDown()) {
                     layoutForDrawing[i][j] = CellTypeForDrawing.HAS_NEITHER_RIGHT_NOR_DOWN_NEIGHBOUR;
@@ -270,7 +293,6 @@ public class MazeGameService {
                 } else {
                     layoutForDrawing[i][j] = CellTypeForDrawing.HAS_DOWN_NEIGHBOUR;
                 }
-
             }
         }
         return layoutForDrawing;
@@ -286,10 +308,10 @@ public class MazeGameService {
         return this.difficulty == null ? "custom" : this.difficulty.getName();
     }
 
-    private void getLoggedInUsersAvereges() {
+    private void getLoggedInUsersAveregeBestAndWorstTimes() {
         if (this.loggedIn != null) {
             try {
-                this.averegeSolveTimes = this.userDao.getAveregeSolveTimesForEachDifficultyFromEasiest(loggedIn);
+                this.solveTimes = this.userDao.getAveregeSolveTimesForEachDifficultyFromEasiestAndBestAndWorstTimes(loggedIn);
             } catch (SQLException ex) {
                 Logger.getLogger(MazeGameService.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -298,24 +320,16 @@ public class MazeGameService {
 
     private void setDifficulty(int width, int height) {
         if (width == height) {
-            switch (width) {
-                case 5:
-                    this.difficulty = new Difficulty("very easy");
-                    break;
-                case 10:
-                    this.difficulty = new Difficulty("easy");
-                    break;
-                case 20:
-                    this.difficulty = new Difficulty("medium");
-                    break;
-                case 40:
-                    this.difficulty = new Difficulty("hard");
-                    break;
-                case 80:
-                    this.difficulty = new Difficulty("ultra hard");
-                    break;
-                default:
-                    break;
+            if (width == 5) {
+                this.difficulty = new Difficulty("very easy");
+            } else if (width == 10) {
+                this.difficulty = new Difficulty("easy");
+            } else if (width == 20) {
+                this.difficulty = new Difficulty("medium");
+            } else if (width == 40) {
+                this.difficulty = new Difficulty("hard");
+            } else if (width == 80) {
+                this.difficulty = new Difficulty("ultra hard");
             }
         }
     }

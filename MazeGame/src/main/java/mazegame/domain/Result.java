@@ -1,20 +1,20 @@
 package mazegame.domain;
 
-public class Game {
+public class Result {
 
     private long id;
     private User user;
     private Difficulty difficulty;
     private int time;
 
-    public Game(long id, User user, Difficulty difficulty, int time) {
+    public Result(long id, User user, Difficulty difficulty, int time) {
         this.id = id;
         this.user = user;
         this.difficulty = difficulty;
         this.time = time;
     }
 
-    public Game(User user, Difficulty difficulty, int time) {
+    public Result(User user, Difficulty difficulty, int time) {
         this(0, user, difficulty, time);
     }
 
