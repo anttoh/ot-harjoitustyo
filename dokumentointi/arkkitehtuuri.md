@@ -1,6 +1,6 @@
 ## Rakenne
 
-Ohjelman pakkausrakenne on seuraava:
+Ohjelman pakkauskaavio on seuraava:
 
 <img src="./kuvat/luokkakaavio.png">
 
@@ -15,9 +15,11 @@ Ohlejmalla on kolme eri näkymää:
 - lobby(pelin avausnäkymä)
 - peli
 
-Näkymät on toteuttettu omina luokkinaan. Nämä luokat luovat ja palauttavat Scene-olion, joina näkymät ollaan toteutettu. Vain yksi näistä Scene-olioista on asetettu sovelluksen Stage-olioon, eli vain yksi näkymä näytetään käyttäjälle kerralla. Näkymän vaihtuessa näiden luokkien medodia, joka luo ja palauttaa Stage-olion, kutsutaan uudelleen. Näkymä päivittyy kun siitä siirrytään pois ja sitten takaisin. Käyttöliittymän "pää" luokka _MazeGameUi_ sisältää stagen ja on vastuussa näkymien vaihtamisesta.
+Näkymät on toteuttettu omina luokkinaan. Nämä luokat luovat ja palauttavat Scene-olion, joina näkymät ollaan toteutettu. Vain yksi näistä Scene-olioista on asetettu sovelluksen Stage-olioon, eli vain yksi näkymä näytetään käyttäjälle kerralla. Näkymän vaihtuessa näiden luokkien medodia, joka luo ja palauttaa Stage-olion, kutsutaan uudelleen. Näkymä päivittyy kun siitä siirrytään pois ja sitten takaisin. Käyttöliittymän luokka _MazeGameUi_ sisältää stagen ja metodit, joita kutsumalla näkymä vaihtuu esim. LobbyScene kutsuu MazeGameUi:n metodia startGame, joka vaihtaa näkymän pelin näkymään.
 
-Käyttöliittymän koodi ja sovelluslogiikan koodi ollaan pyritty eristämään mahdollisimman paljon. Luokka mazegame.domain.MazeGameService tarjoaa käyttöliittymälle kaikki tarvittavat metodit sovelluslogiikan hoitamiseen esim. hahmon liikuttaminen.
+Käyttöliittymän koodi ja sovelluslogiikan koodi ollaan pyritty eristämään mahdollisimman paljon. Luokka mazegame.domain.MazeGameService tarjoaa käyttöliittymälle kaikki tarvittavat metodit sovelluslogiikan hoitamiseen esim. hahmon liikuttaminen, uuden käyttäjän luomiseen jne. Luokan MazeGameUi metodit kutsuvat näitä metodeja sen lisäksi, että ne vaihtavat näkymää.
+
+## Sovelluslogiikka
 
 
 
