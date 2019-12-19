@@ -1,5 +1,6 @@
 package mazegame.domain;
 
+import java.lang.reflect.Field;
 import java.sql.SQLException;
 import mazegame.dao.UserDao;
 import org.junit.After;
@@ -152,5 +153,30 @@ public class MazeGameServiceTest {
         service.exitGame(10);
 
         assertEquals(true, service.getLoggedInUsersAveregeSolveTimes()[0] == 0);
+    }
+
+    @Test
+    public void exitGameSavesResultIfgoalWasReachedAndDifficultyWasSet() throws SQLException, IllegalArgumentException, IllegalAccessException, NoSuchFieldException {
+        // using different user, that won't be deleted after test to avoid constraint violation.
+        String username2 = "CONSTtestaajaUpNG2x3tthKryTKY";
+
+        service.register(username2, password);
+        service.login(username2, password);
+        service.startGame(5, 5);
+
+        // using Reflection to set curCell equal to goal, simulating the user reaching goal.
+        Field mazeField = MazeGameService.class.getDeclaredField("maze");
+        mazeField.setAccessible(true);
+        Maze maze = (Maze) mazeField.get(service);
+        Field curCellField = Maze.class.getDeclaredField("curCell");
+        curCellField.setAccessible(true);
+        curCellField.set(maze, service.mazeGoal());
+        curCellField.setAccessible(false);
+        mazeField.setAccessible(false);
+
+        service.endGame();
+        service.exitGame(10);
+
+        assertEquals(true, service.getLoggedInUsersAveregeSolveTimes()[1] == 10);
     }
 }

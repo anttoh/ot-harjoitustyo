@@ -14,11 +14,11 @@ public class DatabaseInitializer {
 
             // uncomment these statements if you want to reset the db
             // then comment or delete them.
-            /*
+            
             conn.prepareStatement("DROP TABLE Result IF EXISTS;").executeUpdate();
             conn.prepareStatement("DROP TABLE User IF EXISTS;").executeUpdate();
             conn.prepareStatement("DROP TABLE Difficulty IF EXISTS;").executeUpdate();
-             */
+             
             conn.prepareStatement("CREATE TABLE IF NOT EXISTS User ("
                     + " id IDENTITY,"
                     + " username VARCHAR(100) UNIQUE,"
