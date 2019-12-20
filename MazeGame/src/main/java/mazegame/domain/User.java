@@ -2,6 +2,10 @@ package mazegame.domain;
 
 import java.util.Objects;
 
+/**
+ * Class representing user of the application. It contains id, username and
+ * password.
+ */
 public class User {
 
     private long id;

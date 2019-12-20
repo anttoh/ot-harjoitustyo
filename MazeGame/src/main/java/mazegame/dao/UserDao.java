@@ -8,8 +8,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import mazegame.domain.User;
 
+/**
+ * Class responsible for handling database actions concerning user.
+ */
 public class UserDao {
 
+    /**
+     * Method saves user to database.
+     *
+     * @param user user to be saved.
+     *
+     */
     public void create(User user) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:h2:./mazegame", "a", "");
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO User"
@@ -24,6 +33,13 @@ public class UserDao {
         conn.close();
     }
 
+    /**
+     * Method finds and returns user.
+     *
+     * @param user user with fields missing
+     *
+     * @return user with all fields set or null if user wasn't found
+     */
     public User read(User user) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:h2:./mazegame", "a", "");
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User"
@@ -47,6 +63,12 @@ public class UserDao {
         return fullUser;
     }
 
+    /**
+     * Method deletes user from database
+     *
+     * @param user user to be deleted
+     *
+     */
     // note: this method is only used in tests to delete test users. 
     public void delete(User user) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:h2:./mazegame", "a", "");
@@ -61,6 +83,16 @@ public class UserDao {
 
     }
 
+    /**
+     * Method calculates and returns single user's average, best, and word solve
+     * times.
+     *
+     * @param user user who's solve times are wanted
+     *
+     * @return double[][] where first [1][difficulty] contains averages,
+     * [2][difficulty] best and [3][difficulty] worst times, where difficulty is
+     * int representing difficulty 1 = very easy and 6 = ultra hard
+     */
     public double[][] getAveregeSolveTimesForEachDifficultyFromEasiestAndBestAndWorstTimes(User user) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:h2:./mazegame", "a", "");
         Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);

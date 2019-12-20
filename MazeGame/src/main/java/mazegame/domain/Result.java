@@ -1,5 +1,9 @@
 package mazegame.domain;
 
+/**
+ * Class representing games result. It contains id, user that played the game in
+ * question, games difficulty, and the time it took to finish the game.
+ */
 public class Result {
 
     private long id;

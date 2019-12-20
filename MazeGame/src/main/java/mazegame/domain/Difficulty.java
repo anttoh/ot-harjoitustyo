@@ -1,5 +1,9 @@
 package mazegame.domain;
 
+/**
+ * Class representing games difficulty level. It has an id and name.
+ */
+
 public class Difficulty {
 
     private long id;
