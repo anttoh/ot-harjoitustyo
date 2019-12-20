@@ -311,7 +311,7 @@ public class MazeGameService {
     private void getLoggedInUsersAveregeBestAndWorstTimes() {
         if (this.loggedIn != null) {
             try {
-                this.solveTimes = this.userDao.getAveregeSolveTimesForEachDifficultyFromEasiestAndBestAndWorstTimes(loggedIn);
+                this.solveTimes = this.userDao.getAverageBestAndWorstTimesForEachCategory(loggedIn);
             } catch (SQLException ex) {
                 Logger.getLogger(MazeGameService.class.getName()).log(Level.SEVERE, null, ex);
             }

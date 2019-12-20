@@ -2,6 +2,7 @@ package mazegame.domain;
 
 import java.lang.reflect.Field;
 import java.sql.SQLException;
+import mazegame.dao.DatabaseInitializer;
 import mazegame.dao.UserDao;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -31,6 +32,7 @@ public class MazeGameServiceTest {
 
     @Before
     public void setUp() {
+        DatabaseInitializer.initDatabaseIfNotExisting();
         service = new MazeGameService();
         userDao = new UserDao();
         username = "testaajaUpNG2x3tthKryTKY";
@@ -48,6 +50,18 @@ public class MazeGameServiceTest {
     @Test
     public void gameEndedReturnsTrueIfGameIsNotOngoing() {
         assertEquals(true, service.gameEnded());
+    }
+
+    @Test
+    public void hasCellBeenVisitedReturnsWorks() {
+        service.startGame(2, 2);
+
+        assertEquals(false, service.hasCellBeenVisited(service.getCellAtPos(0, 0)));
+        service.goDown();
+        service.goRight();
+        assertEquals(false, service.hasCellBeenVisited(service.getCellAtPos(0, 0)));
+        service.setShowPath(true);
+        assertEquals(true, service.hasCellBeenVisited(service.getCellAtPos(0, 0)));
     }
 
     @Test
@@ -121,11 +135,20 @@ public class MazeGameServiceTest {
         service.register(username, password);
         String wrongPassword = "incorrectPassword";
         assertEquals(false, service.login(username, wrongPassword));
-        assertEquals(true, service.getLoggedInUser() == null);
+        assertEquals(null, service.getLoggedInUser());
 
         String wrongUsername = "nonExistingUsername";
         assertEquals(false, service.login(wrongUsername, password));
-        assertEquals(true, service.getLoggedInUser() == null);
+        assertEquals(null, service.getLoggedInUser());
+    }
+
+    @Test
+    public void logoutSetsLoggedInUserToNull() {
+        service.register(username, password);
+        service.login(username, password);
+        assertEquals(true, service.getLoggedInUser() != null);
+        service.logout();
+        assertEquals(null, service.getLoggedInUser());
     }
 
     @Test
@@ -152,7 +175,7 @@ public class MazeGameServiceTest {
         service.endGame();
         service.exitGame(10);
 
-        assertEquals(true, service.getLoggedInUsersAveregeSolveTimes()[0] == 0);
+        assertEquals(0, service.getLoggedInUsersAveregeSolveTimes()[0], 0.1);
     }
 
     @Test
@@ -177,6 +200,8 @@ public class MazeGameServiceTest {
         service.endGame();
         service.exitGame(10);
 
-        assertEquals(true, service.getLoggedInUsersAveregeSolveTimes()[1] == 10);
+        assertEquals(10.0, service.getLoggedInUsersAveregeSolveTimes()[1], 0.1);
+        assertEquals(10.0, service.getLoggedInUsersBestSolveTimes()[1], 0.1);
+        assertEquals(10.0, service.getLoggedInUsersWorstSolveTimes()[1], 0.1);
     }
 }

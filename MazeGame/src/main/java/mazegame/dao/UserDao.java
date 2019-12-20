@@ -93,7 +93,7 @@ public class UserDao {
      * [2][difficulty] best and [3][difficulty] worst times, where difficulty is
      * int representing difficulty 1 = very easy and 6 = ultra hard
      */
-    public double[][] getAveregeSolveTimesForEachDifficultyFromEasiestAndBestAndWorstTimes(User user) throws SQLException {
+    public double[][] getAverageBestAndWorstTimesForEachCategory(User user) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:h2:./mazegame", "a", "");
         Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         ResultSet rs = stmt.executeQuery("SELECT * FROM Result"

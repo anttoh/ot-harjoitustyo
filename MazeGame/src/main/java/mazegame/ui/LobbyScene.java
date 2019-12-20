@@ -36,10 +36,12 @@ public class LobbyScene {
         Text welcome = new Text("Logged in as " + this.ui.getService().getLoggedInUser().getUsername());
 
         VBox statistics = new VBox();
+        Text statsText = new Text("Your statistics");
+        statsText.setVisible(false);
         Text averege = new Text();
         Text best = new Text();
         Text worst = new Text();
-        statistics.getChildren().addAll(averege, best, worst);
+        statistics.getChildren().addAll(statsText, averege, best, worst);
 
         Button logout = new Button("logout");
         Button play = new Button("start");
@@ -58,46 +60,80 @@ public class LobbyScene {
             String size = "5";
             widthInput.setText(size);
             heightInput.setText(size);
-            averege.setText("Your averege solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersAveregeSolveTimes()[1] + " seconds");
-            best.setText("Your best solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersBestSolveTimes()[1] + " seconds");
-            worst.setText("Your worst solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersWorstSolveTimes()[1] + " seconds");
-
+            statsText.setVisible(true);
+            if (this.ui.getService().getLoggedInUsersAveregeSolveTimes()[1] == 0) {
+                averege.setText("You haven't finished a game in very easy difficulty yet");
+                best.setText("");
+                worst.setText("");
+            } else {
+                averege.setText("averege: " + this.ui.getService().getLoggedInUsersAveregeSolveTimes()[1] + " seconds");
+                best.setText("best: " + this.ui.getService().getLoggedInUsersBestSolveTimes()[1] + " seconds");
+                worst.setText("worst: " + this.ui.getService().getLoggedInUsersWorstSolveTimes()[1] + " seconds");
+            }
         });
 
         easy.setOnAction(e -> {
             String size = "10";
             widthInput.setText(size);
             heightInput.setText(size);
-            averege.setText("Your averege solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersAveregeSolveTimes()[2] + " seconds");
-            best.setText("Your best solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersBestSolveTimes()[2] + " seconds");
-            worst.setText("Your worst solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersWorstSolveTimes()[2] + " seconds");
+            statsText.setVisible(true);
+            if (this.ui.getService().getLoggedInUsersAveregeSolveTimes()[2] == 0) {
+                averege.setText("You haven't finished a game in easy difficulty yet");
+                best.setText("");
+                worst.setText("");
+            } else {
+                averege.setText("averege: " + this.ui.getService().getLoggedInUsersAveregeSolveTimes()[2] + " seconds");
+                best.setText("best: " + this.ui.getService().getLoggedInUsersBestSolveTimes()[2] + " seconds");
+                worst.setText("worst: " + this.ui.getService().getLoggedInUsersWorstSolveTimes()[2] + " seconds");
+            }
         });
 
         medium.setOnAction(e -> {
             String size = "20";
             widthInput.setText(size);
             heightInput.setText(size);
-            averege.setText("Your averege solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersAveregeSolveTimes()[3] + " seconds");
-            best.setText("Your best solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersBestSolveTimes()[3] + " seconds");
-            worst.setText("Your worst solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersWorstSolveTimes()[3] + " seconds");
+            statsText.setVisible(true);
+            if (this.ui.getService().getLoggedInUsersAveregeSolveTimes()[3] == 0) {
+                averege.setText("You haven't finished a game in medium difficulty yet");
+                best.setText("");
+                worst.setText("");
+            } else {
+                averege.setText("averege: " + this.ui.getService().getLoggedInUsersAveregeSolveTimes()[3] + " seconds");
+                best.setText("best: " + this.ui.getService().getLoggedInUsersBestSolveTimes()[3] + " seconds");
+                worst.setText("worst: " + this.ui.getService().getLoggedInUsersWorstSolveTimes()[3] + " seconds");
+            }
         });
 
         hard.setOnAction(e -> {
             String size = "40";
             widthInput.setText(size);
             heightInput.setText(size);
-            averege.setText("Your averege solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersAveregeSolveTimes()[4] + " seconds");
-            best.setText("Your best solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersBestSolveTimes()[4] + " seconds");
-            worst.setText("Your worst solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersWorstSolveTimes()[4] + " seconds");
+            statsText.setVisible(true);
+            if (this.ui.getService().getLoggedInUsersAveregeSolveTimes()[4] == 0) {
+                averege.setText("You haven't finished a game in hard difficulty yet");
+                best.setText("");
+                worst.setText("");
+            } else {
+                averege.setText("averege: " + this.ui.getService().getLoggedInUsersAveregeSolveTimes()[4] + " seconds");
+                best.setText("best: " + this.ui.getService().getLoggedInUsersBestSolveTimes()[4] + " seconds");
+                worst.setText("worst: " + this.ui.getService().getLoggedInUsersWorstSolveTimes()[4] + " seconds");
+            }
         });
 
         ultrahard.setOnAction(e -> {
             String size = "80";
             widthInput.setText(size);
             heightInput.setText(size);
-            averege.setText("Your averege solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersAveregeSolveTimes()[5] + " seconds");
-            best.setText("Your best solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersBestSolveTimes()[5] + " seconds");
-            worst.setText("Your worst solve time in very easy difficulty is " + this.ui.getService().getLoggedInUsersWorstSolveTimes()[5] + " seconds");
+            statsText.setVisible(true);
+            if (this.ui.getService().getLoggedInUsersAveregeSolveTimes()[5] == 0) {
+                averege.setText("You haven't finished a game in ultra hard difficulty yet");
+                best.setText("");
+                worst.setText("");
+            } else {
+                averege.setText("averege: " + this.ui.getService().getLoggedInUsersAveregeSolveTimes()[5] + " seconds");
+                best.setText("best: " + this.ui.getService().getLoggedInUsersBestSolveTimes()[5] + " seconds");
+                worst.setText("worst: " + this.ui.getService().getLoggedInUsersWorstSolveTimes()[5] + " seconds");
+            }
         });
 
         play.setOnAction(e -> {
