@@ -24,4 +24,5 @@ päivä | aika | mitä tein
 17.12 | 4 | arkkitehtuurikuvauksen muokkaamista, refaktorointia ja testien luomista ja korjaamista.
 18.12 | 5 | nopeimman ja hitaimman ratkaisuajan etsiminen kategoria kohtaisesti ja refaktorointia sekä testaamista
 19.12 | 3 | java Reflectioniin tutustumista testiä varten ja tämän testin luominen, sekä dokumentoinnin jatkamista
-yht. | 69 |
+20.12 | 4 | javadocien luontia, testien luontia ja refaktorointia
+yht. | 73 |
