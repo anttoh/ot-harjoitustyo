@@ -18,6 +18,11 @@ public class LoginScene {
         this.ui = ui;
     }
 
+    /**
+     * Method creates and returns applications login scene.
+     *
+     * @return login scene
+     */
     public Scene createAndGet() {
 
         VBox layout = new VBox(10);

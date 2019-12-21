@@ -64,15 +64,22 @@ public class UserDao {
     }
 
     /**
-     * Method deletes user from database
+     * Method deletes user and all their results from database
      *
-     * @param user user to be deleted
+     * @param user user to be deleted along with their results
      *
      */
-    // note: this method is only used in tests to delete test users. 
+    // note: this method is currently only used in tests to delete test users and their results, but it can be used in the actual application as well. 
     public void delete(User user) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:h2:./mazegame", "a", "");
-        PreparedStatement stmt = conn.prepareStatement("DELETE FROM User"
+
+        PreparedStatement stmt = conn.prepareStatement("DELETE FROM Result"
+                + " WHERE user_id = ?;");
+
+        stmt.setLong(1, user.getId());
+        stmt.executeUpdate();
+
+        stmt = conn.prepareStatement("DELETE FROM User"
                 + " WHERE id = ?;");
 
         stmt.setLong(1, user.getId());
@@ -80,7 +87,6 @@ public class UserDao {
 
         stmt.close();
         conn.close();
-
     }
 
     /**

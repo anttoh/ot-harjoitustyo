@@ -1,11 +1,8 @@
 package mazegame.domain;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
 
 public class MazeTest {
 
@@ -14,21 +11,9 @@ public class MazeTest {
     public MazeTest() {
     }
 
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
     @Before
     public void setUp() {
         maze = new Maze(2, 2);
-    }
-
-    @After
-    public void tearDown() {
     }
 
     @Test
@@ -41,6 +26,15 @@ public class MazeTest {
     public void goalIsCorrectCell() {
         assertEquals(maze.getLayout()[1][1], maze.getGoal());
 
+    }
+
+    @Test
+    public void curCellChangesWhenUserMovesToDifferentCell() {
+        Cell before = maze.getCurrentCell();
+        maze.moveDown();
+        maze.moveRight();
+        Cell after = maze.getCurrentCell();
+        assertEquals(false, before.equals(after));
     }
 
     @Test
@@ -69,6 +63,18 @@ public class MazeTest {
         }
 
         assertEquals(true, visitedGoal);
+    }
 
+    @Test
+    public void visitedReturnsFalseIfCellHasNotBeenCurCell() {
+        assertEquals(false, maze.visited(maze.getLayout()[1][1]));
+    }
+
+    @Test
+    public void curCellIsSetToVisitedWhenMovedFrom() {
+        assertEquals(false, maze.visited(maze.getLayout()[0][0]));
+        maze.moveDown();
+        maze.moveRight();
+        assertEquals(true, maze.visited(maze.getLayout()[0][0]));
     }
 }

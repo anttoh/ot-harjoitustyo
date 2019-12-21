@@ -20,6 +20,11 @@ public class LobbyScene {
         this.ui = ui;
     }
 
+    /**
+     * Method creates and returns applications lobby scene.
+     *
+     * @return lobby scene
+     */
     public Scene createAndGet() {
 
         BorderPane layout = new BorderPane();

@@ -25,6 +25,11 @@ public class GameScene {
         this.ui = ui;
     }
 
+    /**
+     * Method creates and returns applications game scene.
+     *
+     * @return game scene
+     */
     public Scene createAndGet() {
 
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();

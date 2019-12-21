@@ -1,9 +1,5 @@
 package mazegame.domain;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -13,18 +9,6 @@ public class LayoutGeneratorTest {
     Cell[][] layout;
 
     public LayoutGeneratorTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
         layout = new Cell[2][2];
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 2; j++) {
@@ -33,10 +17,6 @@ public class LayoutGeneratorTest {
         }
         generator = new LayoutGenerator();
         generator.generateMazeLayout(layout);
-    }
-
-    @After
-    public void tearDown() {
     }
 
     @Test
