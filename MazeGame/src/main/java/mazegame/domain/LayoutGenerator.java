@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Class responsible for generating the layout for the maze
+ * Class responsible for generating the layout for the maze.
  */
 public class LayoutGenerator {
 

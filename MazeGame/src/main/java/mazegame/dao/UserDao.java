@@ -90,14 +90,14 @@ public class UserDao {
     }
 
     /**
-     * Method calculates and returns single user's average, best, and word solve
-     * times.
+     * Method calculates and returns single user's average, best, and worst
+     * solve times.
      *
      * @param user user who's solve times are wanted
      *
-     * @return double[][] where first [1][difficulty] contains averages,
+     * @return double[][] where [1][difficulty] contains averages,
      * [2][difficulty] best and [3][difficulty] worst times, where difficulty is
-     * int representing difficulty 1 = very easy and 6 = ultra hard
+     * int representing difficulty with 1 = very easy and 6 = ultra hard
      */
     public double[][] getAverageBestAndWorstTimesForEachCategory(User user) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:h2:./mazegame", "a", "");

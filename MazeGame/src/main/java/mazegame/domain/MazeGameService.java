@@ -40,7 +40,7 @@ public class MazeGameService {
     }
 
     /**
-     * Method creates a new user and return true if succeeded and false
+     * Method creates a new user and returns true if succeeded and false
      * otherwise
      *
      * @param username users chosen username
