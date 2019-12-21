@@ -4,7 +4,7 @@ Ohjelman pakkauskaavio on seuraava:
 
 <img src="./kuvat/luokkakaavio.png">
 
-(HUOM. Sovellukseen on lisätty luokka Difficulty ja DifficultyDao, joiden välinen yhteys on samanlainen kuin User ja UserDaon sekä kuvan Game ja GameDaon. Difficultyn ja Gamen välinen suhde one seuraava: Game *-1 Difficulty. Refaktoroinnin myötä kuvan MazeGenerator on nykyään LayaoutGenerator ja Game on nykyään Result ja GameDao on ResultDao. Kuvan Mazen ja LayoutGeneratorin välisen viivan molemmissa päissä kuuluisi olla nro. 1. Kuvan nuoli MazeGameUI:sta MazeGameService:n on hieman liian lyhyt, mutta se siis osoittaa MazeGameServiceen, ei koko mazegame.domain pakkausta)
+(HUOM. Sovellukseen on lisätty luokka Difficulty ja DifficultyDao, joiden välinen yhteys on samanlainen kuin User ja UserDaon sekä kuvan Game ja GameDaon. Difficultyn ja Gamen välinen suhde on samanlainen kuin Gamen ja Userin välinen suhde. Refaktoroinnin myötä kuvan MazeGenerator on nykyään LayaoutGenerator ja Game on nykyään Result ja GameDao on ResultDao. Kuvan Mazen ja LayoutGeneratorin välisen viivan molemmissa päissä kuuluisi olla nro. 1. Kuvan nuoli MazeGameUI:sta MazeGameService:n on hieman liian lyhyt, mutta se siis osoittaa MazeGameServiceen, ei koko mazegame.domain pakkausta)
 
 Pakkaus _mazegame.ui_ sisältää JavaFX:llä toteutetun käyttöliittymän _mazegame.domain_ sovelluslogiikan ja _mazegame.dao_ tietojen pysyväistallennuksesta vastaavan koodin, sekä tietokannan alustavan koodin.
 
