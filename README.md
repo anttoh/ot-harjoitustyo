@@ -18,6 +18,8 @@ Sovellus on yksinkertainen sokkelo peli. Jokaisen pelin alussa sovellus luo satu
 
 [Viikko 6](https://github.com/anttoh/ot-harjoitustyo/releases/tag/viikko6)
 
+[Loppupalautus](https://github.com/anttoh/ot-harjoitustyo/releases/tag/loppupalautus)
+
 
 ## Komentorivitoiminnot
 
