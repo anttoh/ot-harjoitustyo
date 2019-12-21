@@ -4,13 +4,16 @@ Sovellus on yksinkertainen sokkelo peli. Jokaisen pelin alussa sovellus luo satu
 (Sovellus on syksyn 2019 ohjelmistotekniikan harjoitustyöni)
 
 ## Dokumentointi
-[Käyttöohje](./dokumentointi/kayttoohje.md)
 
-[Työaikakirjanpito](./dokumentointi/tuntikirjanpito.md)
+[Käyttöohje](./dokumentointi/kayttoohje.md)
 
 [Vaatimusmäärittely](./dokumentointi/vaatimusmaarittely.md)
 
 [Arkkitehtuurikuvaus](./dokumentointi/arkkitehtuuri.md)
+
+[Testausdokumentti](./dokumentointi/testaus.md)
+
+[Työaikakirjanpito](./dokumentointi/tuntikirjanpito.md)
 
 ## Releaset
 
