@@ -25,4 +25,5 @@ päivä | aika | mitä tein
 18.12 | 5 | nopeimman ja hitaimman ratkaisuajan etsiminen kategoria kohtaisesti ja refaktorointia sekä testaamista
 19.12 | 3 | java Reflectioniin tutustumista testiä varten ja tämän testin luominen, sekä dokumentoinnin jatkamista
 20.12 | 4 | javadocien luontia, testien luontia ja refaktorointia
-yht. | 73 |
+21.12 | 5 | javadocien luontia, testien luontia ja refaktorointia
+yht. | 78 |
