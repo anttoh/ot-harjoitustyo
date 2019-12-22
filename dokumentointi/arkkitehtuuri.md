@@ -69,4 +69,9 @@ Tauluun Difficulty luodaan valmiiksi määritellyt vaikeusasteet tietokannan luo
 Seuraava sekvenssikaavio antaa esimerkin sovelluksen toiminnasta ja miten eri luokat kommunikoivat keskenään.
 
 ### Kirjautumislogiikkaa
+
+(HUOM. kuvan User ei kuvasta luokkaa User vaan sovelluksen käyttäjää)
+
 <img src="./kuvat/loginSequence.png">
+
+(Selvennys. stage.setScene(lobbyScene) on itseasiassa stage.setScene(LobbyScene.createAndGet()), eli luokan LobbyScenen metodia createAndGet() kutsutaan, jolloin stage asettaa uuden LobbyScene olion stageen. Tämän jälkeen käyttäjä näkee lobby näkymän kirjautumisnäkymän sijaan. Jos kirjautuminen olisi epäonnistunut, näkymä ei olisi vaihtunut, ja käyttäjälle oltaisiin ilmoitettua, että käyttäjänimi tai salasana oli väärin)
