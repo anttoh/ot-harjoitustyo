@@ -61,10 +61,13 @@ mvn javadoc:javadoc
 ```
 
 JavaDocia voi tarkastella avaamalla selaimella tiedosto _target/site/apidocs/index.html_
-(HUOM. jos javadocin generointi ei onnistu, koita poistaa seuraava rivi pom.xml tiedostasta 
+(HUOM. jos javadocin generointi ei onnistu, poista seuraava rivi pom.xml tiedostasta ja kokeile uudestaan
+
+```
 <configuration>
         <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
 </configuration>)
+```
 
 ### Checkstyle
 
