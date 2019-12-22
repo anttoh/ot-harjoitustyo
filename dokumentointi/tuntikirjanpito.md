@@ -26,4 +26,5 @@ päivä | aika | mitä tein
 19.12 | 3 | java Reflectioniin tutustumista testiä varten ja tämän testin luominen, sekä dokumentoinnin jatkamista
 20.12 | 4 | javadocien luontia, testien luontia ja refaktorointia
 21.12 | 5 | javadocien luontia, testien luontia ja refaktorointia + arkkitehtuurikuvauksen jatkamista
-yht. | 78 |
+22.12 | 5 | dokumentoinnin viimeistelyä
+yht. | 83 |
