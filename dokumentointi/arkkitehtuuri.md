@@ -106,5 +106,5 @@ Alla sekvenssikaavio, joka kuvaa onnistunutta kirjautumista:
 
 ## Muut toiminnallisuudet
 
-Muut toiminnallisuudet on toteutettu samanlailla, kuin päätoiminnallisuudetkin.
+Muut toiminnallisuudet on toteutettu samankaltaisesti, kuin päätoiminnallisuudetkin.
 
