@@ -21,7 +21,52 @@ Käyttöliittymän koodi ja sovelluslogiikan koodi ollaan pyritty eristämään 
 
 ## Sovelluslogiikka
 
+MazeGameServicen ainoa olio tarjoaa kaikille käyttöliittymän toiminnoille omat metodit. Näitä metodeja ovat esim:
 
+- boolean login(String username, String password)
+- boolean register(String username, String password)
+- void startGame(int width, int height)
+- void exitGame(int time)
+- void goUp(), goDown() jne..
 
-## Kirjautumislogiikkaa
+Tämä olio tarjoaa käyttöliittymälle myös metodeja sokkelon piirtämistä varten kuten:
+
+- CellTypeForDrawing[][] getLayoutForDrawing()
+- Cell getCellAtPos(int x, int y)
+- boolean hasCellBeenVisited(Cell cell)
+
+MazeGameService pääsee käsiksi tietokantaan mazegame.dao paukkauksen Dao luokkien avulla. MazeGameService luo jokaisesta Dao luokasta olion sen konstruktorissa.
+
+## Tietokanta
+
+Pakkauksen mazegame.dao luokat huolehtivat tietojen tallentamisesta tietokantaan. Poikkeuksena luokka DatabaseInitializer, joka huolehtii tietokannan luonnista. Tietokanta luodaan paikallisesti.
+
+Luokat ottavat mallia DAO suunnittelumallista (paitsi DatabaseInitializer). Luokkia ei ole eristetty erillisten rajapintojen taakse, vaan sovelluslogiikka käyttää niitä suoraan. Rajapintojen lisääminen on kuitenkin mahdollista, jos on tarvetta. DatabaseInitializer tarjoaa yhden staattisen medotin initDatabaseIfNotExisting, joka luo tietokannan, jos sitä ei ole olemassa paikallisesti.
+
+### Tietokannan rakenne
+
+Tietokanta sisältää kolme taulua: User, Result ja Difficulty. Taulujen rakenteet ovat seuraavat:
+
+User
+- id IDENTITY PRIMARY KEY
+- username VARCHAR UNIQUE
+- password VARCHAR
+
+Difficulty
+- id IDENTITY PRIMARY KEY
+- name VARCHAR
+
+Result
+- id IDENTITY PRIMARY KEY
+- user_id BIGINT FOREIGN KEY
+- difficulty_id BIGINT FOREIGN KEY
+- time INT
+
+Tauluun Difficulty luodaan valmiiksi määritellyt vaikeusasteet tietokannan luonti hetkellä.
+
+## Päätoiminnallisuudet
+
+Seuraava sekvenssikaavio antaa esimerkin sovelluksen toiminnasta ja miten eri luokat kommunikoivat keskenään.
+
+### Kirjautumislogiikkaa
 <img src="./kuvat/loginSequence.png">
