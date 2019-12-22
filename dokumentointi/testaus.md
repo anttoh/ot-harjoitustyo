@@ -1,6 +1,6 @@
 # Testausdokumentti
 
-Sovelluksen logiikkaa ja pysyväistallennusta on testattu automatisoiduin yksikkötestein sekä manuaalisesti graafisen käyttöliittymän avulla. Käyttöliittymää ollaan testattu manuaalisesti käsin. Sovellusta kokonaisuutena on testattu manuaalisesti käsin.
+Sovelluksen logiikkaa ja pysyväistallennusta on testattu automatisoiduin yksikkötestein sekä manuaalisesti graafisen käyttöliittymän avulla. Käyttöliittymää ollaan testattu manuaalisesti käsin. Sovellusta kokonaisuutena on myöskin testattu käsin.
 
 ## Yksikkö- ja integraatiotestaus
 
@@ -12,14 +12,14 @@ Käyttöliittymäkerrosta lukuunottamatta sovelluksen testauksen rivikattavuus o
 
 <img src="./kuvat/testikattavuus.png" width="800">
 
-## Järjestelmätestaun
+## Järjestelmätestaus
 
 Sovelluksen järjestelmätestaus on tehty manuuaalisesti käsin. Käyttäjän mahdollisia virheellisiä syötteitä on kokeiltu käsin.
 
 ## Asennus ja konfigurointi
 
-Sovellus ei vaadi konfigurointia. Sovellus luo tietokannan paikallisesti, jos sitä ei ole ennestään. Sovelluksen toimivuutta on testattu ainoastaan 2019 fuksiläppärillä, jossa on koulun oma Cubbli-linux.
+Sovellus ei vaadi konfigurointia. Sovellus luo tietokannan paikallisesti, jos sitä ei ole ennestään. Sovelluksen toimivuutta on testattu ainoastaan 2019 fuksiläppärillä, jossa on koulun Cubbli-linux.
 
 ## Toiminnallisuudet
 
-Kaikki vaatimusmäärittelyn listaamat toiminnallisuudet on käyty läpi, ja kokeiltu, että ne toimivat.
+Kaikki vaatimusmäärittelyn listaamat toiminnallisuudet on käyty läpi, ja kokeiltu, että ne toimivat. Myös mahdollisia virheellisiä käyttäjän syötteitä on kokeiltu ja varmistettu, että sovellus ilmoittaa näistä käyttäjälle.
